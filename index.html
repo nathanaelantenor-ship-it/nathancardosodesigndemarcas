@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathan Cardoso - Design e estratégia de marcas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        black: '#030303',
+                        white: '#ffffff',
+                        blue: {
+                            500: '#0000FF',
+                            pure: '#0000FF',
+                            dark: '#00008B'
+                        },
+                        neutral: {
+                            800: '#1f1f1f',
+                            900: '#0a0a0a',
+                        }
+                    },
+                    spacing: {
+                        'section': '160px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Animações Cinematográficas - Mural Horizontal */
+        @keyframes marqueeLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes marqueeRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .animate-marquee-left {
+            animation: marqueeLeft 45s linear infinite;
+        }
+        .animate-marquee-right {
+            animation: marqueeRight 45s linear infinite;
+        }
+        .reel-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Animações Suaves */
+        @keyframes slowFadeIn {
+            0% { opacity: 0; transform: scale(1.02); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in-slow {
+            animation: slowFadeIn 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Reveal Scroll Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 100ms; }
+        .reveal-delay-2 { transition-delay: 200ms; }
+
+        /* Componentes de Projeto */
+        .image-box {
+             position: relative;
+             overflow: hidden;
+             border-radius: 0.125rem;
+             transition: all 0.4s ease;
+             border: 1px solid #1f1f1f;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .project-card:hover .image-box {
+            border-color: #0000FF;
+        }
+        .project-card:hover .image-box img {
+            transform: scale(1.05);
+        }
+        .project-card:hover .project-title {
+            color: #0000FF;
+        }
+
+        .process-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-top: 1px solid #262626;
+            background-color: transparent;
+            padding: 1.5rem;
+            border-radius: 0.375rem;
+        }
+        .process-card:hover {
+            border-color: #0000FF;
+            background-color: #0000FF;
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 255, 0.3);
+        }
+        .process-card:hover .process-number,
+        .process-card:hover .process-icon,
+        .process-card:hover h3,
+        .process-card:hover p {
+            color: #ffffff !important;
+        }
+
+        .sports-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.125rem;
+            background-color: #0a0a0a;
+            border: 1px solid transparent;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sports-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        .sports-item:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: #0000FF;
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 255, 0.15);
+            z-index: 10;
+        }
+        .sports-item:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Projetos Flutuantes da Seção de Transição Editorial */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .projects-wrapper { perspective: 1200px; }
+        .floating-project {
+            transform-style: preserve-3d;
+            will-change: transform;
+            animation: projectFloat 7s ease-in-out infinite;
+        }
+        @keyframes projectFloat {
+            0% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(-1deg) rotateZ(0deg); }
+            50% { transform: translate3d(0, -12px, 18px) rotateX(2deg) rotateY(3deg) rotateZ(-0.5deg); }
+            100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(-1deg) rotateZ(0deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .floating-project { animation: none; }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030303; }
+        ::-webkit-scrollbar-thumb { background: #1f1f1f; }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+
+        #case-modal, #image-lightbox {
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        #case-modal.open, #image-lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 backdrop-blur-md bg-black/40 border-b border-white/5">
+        <div class="max-w-[1400px] mx-auto flex justify-between items-start md:items-center flex-col md:flex-row gap-4 md:gap-0">
+            <a href="#" onclick="showHomeView(); return false;" class="flex flex-col group cursor-pointer">
+                <span class="font-bold tracking-tight text-lg text-white group-hover:text-[#0000FF] transition-colors">NATHAN CARDOSO</span>
+                <span class="text-white/60 text-sm tracking-wide group-hover:text-white/80 transition-colors">Design e estratégia de marcas</span>
+            </a>
+            
+            <nav class="hidden lg:flex gap-6 text-sm font-medium tracking-wide items-center">
+                <a href="#sobre" onclick="showHomeView('#sobre'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Sobre</a>
+                <a href="#processo" onclick="showHomeView('#processo'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Processo</a>
+                <a href="#portfolio" onclick="showHomeView('#portfolio'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Identidade</a>
+                <a href="#social-media" onclick="showHomeView('#social-media'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Social</a>
+                <a href="#web-design" onclick="showHomeView('#web-design'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Web</a>
+                <a href="#sports-section" onclick="showHomeView('#sports-section'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Sports</a>
+                <a href="#contato" onclick="showHomeView('#contato'); return false;" class="text-white font-bold hover:text-[#0000FF] transition-colors">Contato</a>
+            </nav>
+            
+            <button class="lg:hidden absolute top-6 right-6 text-white cursor-pointer" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        
+        <nav id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/10 py-6 px-6 flex flex-col gap-6 text-sm font-medium tracking-wide">
+            <a href="#sobre" onclick="showHomeView('#sobre'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white/80">Sobre</a>
+            <a href="#processo" onclick="showHomeView('#processo'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white/80">Processo</a>
+            <a href="#portfolio" onclick="showHomeView('#portfolio'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white/80">Identidade</a>
+            <a href="#social-media" onclick="showHomeView('#social-media'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white/80">Social Media</a>
+            <a href="#web-design" onclick="showHomeView('#web-design'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white/80">Web Design</a>
+            <a href="#sports-section" onclick="showHomeView('#sports-section'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white/80">Sports Design</a>
+            <a href="#contato" onclick="showHomeView('#contato'); document.getElementById('mobile-menu').classList.add('hidden'); return false;" class="text-white font-bold">Contato</a>
+        </nav>
+    </header>
+
+    <div id="app-container" class="flex-grow">
+        
+        <!-- ========================================== -->
+        <!-- VIEW: HOME -->
+        <!-- ========================================== -->
+        <div id="home-view" class="block w-full">
+            
+            <section id="hero" class="relative min-h-screen flex items-center w-full bg-black overflow-hidden pt-20">
+                <div class="absolute inset-y-0 right-0 w-full md:w-[70%] h-full z-0 pointer-events-none" 
+                     style="mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,1) 100%); 
+                            -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,1) 100%);">
+                    <img src="https://lh3.googleusercontent.com/d/1P6F-hwvPvUXHWoFaKig8DHBcjyBG9g_P" alt="Nathan Cardoso" class="w-full h-full object-cover object-[70%_50%] opacity-40">
+                </div>
+
+                <div class="relative z-10 w-full px-6 md:px-12 max-w-[1400px] mx-auto animate-fade-in-slow">
+                    <div class="w-full md:w-[60%] lg:w-[50%] flex flex-col justify-center">
+                        <div class="mb-8">
+                            <h2 class="text-xs font-bold tracking-[0.2em] text-white uppercase mb-1">Nathan Cardoso</h2>
+                            <p class="text-[11px] uppercase tracking-[0.15em] text-neutral-500">Design e estratégia de marcas</p>
+                        </div>
+
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight text-white mb-6">
+                            Eu não começo pelo visual.<br>
+                            Começo pelo que a marca precisa <span class="text-[#0000FF] font-semibold">dizer.</span>
+                        </h1>
+                        
+                        <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-sm mb-12">
+                            Estratégia, identidade e presença digital para transformar ideias em marcas com direção.
+                        </p>
+
+                        <div>
+                            <a href="#portfolio" class="inline-flex items-center gap-3 text-sm font-bold tracking-wide text-white hover:text-[#0000FF] transition-all group pb-1 border-b border-transparent hover:border-[#0000FF]">
+                                Conhecer meu trabalho 
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-12 right-12 hidden lg:flex flex-col items-end gap-2 opacity-30 text-[9px] uppercase tracking-[0.3em] font-bold text-white z-10">
+                    <span>Estratégia</span>
+                    <span>Direção Visual</span>
+                    <span>Presença</span>
+                </div>
+            </section>
+
+            <!-- SEÇÃO SOBRE -->
+            <section id="sobre" class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 flex items-center min-h-screen py-24 md:py-32">
+                <div class="absolute inset-y-0 left-0 w-[150%] md:w-[75%] h-[150vh] -top-[25vh] z-0 flex flex-col justify-center gap-6 transform -rotate-8 opacity-40 pointer-events-none"
+                     style="mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.05) 20%, rgba(0,0,0,1) 60%); -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.05) 20%, rgba(0,0,0,1) 60%);">
+                    
+                    <div class="flex gap-6 w-max animate-marquee-left reel-track">
+                        <img src="https://lh3.googleusercontent.com/d/1s1IhE163FqPvqqx8_dKYQzGOKXwL6_yu" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1r9yI4N8ZYRHxWwCZCPaaSBuynDYSU_1N" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1rSFdzj-P3C7y0M4KvDJHip589zUJ7TZf" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1s1IhE163FqPvqqx8_dKYQzGOKXwL6_yu" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1r9yI4N8ZYRHxWwCZCPaaSBuynDYSU_1N" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1rSFdzj-P3C7y0M4KvDJHip589zUJ7TZf" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                    </div>
+
+                    <div class="flex gap-6 w-max animate-marquee-right reel-track" style="transform: translateX(-50%);">
+                        <img src="https://lh3.googleusercontent.com/d/1uuCIY9FkfGAoAKw6sioac15aR8wiMW47" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1bUXo70n2UNmd-uI4VmjJX_bxPYL_0n2K" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1PIgvAnOrHIplntVw5BluQfUcTakQkPap" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1uuCIY9FkfGAoAKw6sioac15aR8wiMW47" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1bUXo70n2UNmd-uI4VmjJX_bxPYL_0n2K" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1PIgvAnOrHIplntVw5BluQfUcTakQkPap" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                    </div>
+
+                    <div class="flex gap-6 w-max animate-marquee-left reel-track">
+                        <img src="https://lh3.googleusercontent.com/d/1bTV8EgOnU2hs9FojlJybzIei9TbvsVY-" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1is0xEZIv8tRAUwYwqX9srJIaYdCk5uXx" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/13VjDbHGH03UAwXJmdx1TWBfKK-d_F6Fz" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1mTK7QIT0W7VkOCffS4Cq-iuC2CUJhQv9" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1FtIK1paNTzHG7eCsa8zVkvt3tXCTdn0-" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1bTV8EgOnU2hs9FojlJybzIei9TbvsVY-" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1is0xEZIv8tRAUwYwqX9srJIaYdCk5uXx" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/13VjDbHGH03UAwXJmdx1TWBfKK-d_F6Fz" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1mTK7QIT0W7VkOCffS4Cq-iuC2CUJhQv9" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1FtIK1paNTzHG7eCsa8zVkvt3tXCTdn0-" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                    </div>
+                </div>
+
+                <div class="relative z-10 w-full px-6 md:px-12 max-w-[1400px] mx-auto flex justify-start">
+                    <div class="w-full md:w-[60%] lg:w-[45%] flex flex-col justify-center items-start text-right bg-black/60 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-6 md:p-0 rounded-sm">
+                        <span class="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold mb-6 w-full text-left">SOBRE O NATHAN</span>
+                        <h2 class="text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-white mb-6 w-full text-left">
+                            Eu não começo pelo <span class="text-[#0000FF] font-semibold">design.</span>
+                        </h2>
+                        <p class="font-serif italic text-xl md:text-2xl text-neutral-400 mb-8 max-w-sm leading-snug w-full text-left">
+                            "Começo tentando entender o que existe por trás dele."
+                        </p>
+                        <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-sm mb-16 w-full text-left">
+                            Trabalho com estratégia de marcas e design, ajudando empresas a transformar ideias, posicionamento e objetivos em identidades visuais e experiências digitais que fazem sentido.
+                        </p>
+
+                        <div class="flex flex-col items-start text-left gap-8 pt-10 border-t border-neutral-900/80 w-full max-w-xs">
+                            <div class="w-full">
+                                <p class="text-[#0000FF] font-bold text-2xl mb-1">+4 anos</p>
+                                <p class="text-[10px] uppercase tracking-[0.15em] text-neutral-500">De experiência</p>
+                            </div>
+                            <div class="w-full">
+                                <p class="text-white font-bold text-lg mb-1 uppercase tracking-wide">Identidade Visual</p>
+                                <p class="text-[10px] uppercase tracking-[0.15em] text-neutral-500">Principal especialidade</p>
+                            </div>
+                            <div class="w-full">
+                                <p class="text-white font-bold text-lg mb-1 uppercase tracking-wide">Social + Web</p>
+                                <p class="text-[10px] uppercase tracking-[0.15em] text-neutral-500">Extensão do trabalho</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAIXA AZUL -->
+            <section class="relative w-full bg-[#0000FF] text-center py-16 md:py-20 reveal">
+                <div class="max-w-[1400px] mx-auto px-6">
+                    <h3 class="text-2xl md:text-4xl lg:text-[3.5rem] font-medium leading-[1.6] tracking-tight text-white">
+                        Antes de construir uma marca,<br class="hidden md:block">
+                        é preciso entender <span class="text-white font-semibold">para onde ela quer ir.</span>
+                    </h3>
+                </div>
+            </section>
+
+            <!-- SEÇÃO PROCESSO -->
+            <section id="processo" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto">
+                <div class="mb-20 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
+                        MEU<br>PROCESSO
+                    </h2>
+                    <p class="font-serif italic text-xl text-neutral-400">
+                        O projeto começa antes de abrir qualquer ferramenta.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 reveal reveal-delay-2">
+                    <div class="process-card cursor-pointer group">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">01</span>
+                            <i data-lucide="search" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">ENTENDER</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Imersão no negócio, contexto, público e objetivos.</p>
+                    </div>
+                    
+                    <div class="process-card cursor-pointer group">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">02</span>
+                            <i data-lucide="compass" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">DIRECIONAR</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Definição de conceito, referências e direção visual.</p>
+                    </div>
+
+                    <div class="process-card cursor-pointer group">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">03</span>
+                            <i data-lucide="pen-tool" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">CONSTRUIR</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Criação da identidade, aplicações e sistema visual.</p>
+                    </div>
+
+                    <div class="process-card cursor-pointer group">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">04</span>
+                            <i data-lucide="layers" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">APLICAR</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Transformação da identidade em comunicação real.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO IDENTIDADE VISUAL -->
+            <section id="portfolio" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900">
+                <div class="mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
+                        IDENTIDADE<br>VISUAL
+                    </h2>
+                    <p class="font-serif italic text-xl text-neutral-400">
+                        Marcas construídas para serem reconhecidas, lembradas e aplicadas.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal reveal-delay-2">
+                    <div class="project-card cursor-pointer group" onclick="openCase('tribunal')">
+                        <div class="image-box w-full aspect-[4/3] mb-6">
+                            <img src="https://lh3.googleusercontent.com/d/1s1IhE163FqPvqqx8_dKYQzGOKXwL6_yu" alt="Capa Tribunal do Marketing" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-2">PROJETO 01</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors">TRIBUNAL DO MARKETING</h3>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors"></i>
+                        </div>
+                    </div>
+
+                    <div class="project-card cursor-pointer group" onclick="openCase('convertbio')">
+                        <div class="image-box w-full aspect-[4/3] mb-6">
+                            <img src="https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A" alt="Capa ConvertBio" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-2">PROJETO 02</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors">CONVERTBIO</h3>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card cursor-pointer group" onclick="openCase('gomerry')">
+                        <div class="image-box w-full aspect-[4/3] mb-6">
+                            <img src="https://lh3.googleusercontent.com/d/1r9yI4N8ZYRHxWwCZCPaaSBuynDYSU_1N" alt="Capa Gomerry" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-2">PROJETO 03</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors">GOMERRY</h3>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors"></i>
+                        </div>
+                    </div>
+
+                    <div class="project-card cursor-pointer group" onclick="openCase('kovax')">
+                        <div class="image-box w-full aspect-[4/3] mb-6">
+                            <img src="https://lh3.googleusercontent.com/d/1PIgvAnOrHIplntVw5BluQfUcTakQkPap" alt="Capa Kovax" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-2">PROJETO 04</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors">KOVAX</h3>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASE ABERTO EM DESTAQUE -->
+                <div class="mt-24 md:mt-32 pt-16 border-t border-neutral-900 reveal">
+                    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-[#0000FF] font-bold mb-2">CASE COMPLETO • DESTAQUE</p>
+                            <h3 class="text-3xl md:text-4xl font-bold text-white">REDE DE JOVENS AVIVA</h3>
+                        </div>
+                        <p class="text-sm text-neutral-400 font-light max-w-sm leading-relaxed">
+                            Uma visão aprofundada de como a estratégia se desdobra na prática, conectando todos os pontos de contato da marca em um ecossistema visual sólido.
+                        </p>
+                    </div>
+
+                    <!-- Layout Colagem -->
+                    <div class="flex flex-col gap-6 md:gap-10">
+                        <!-- Linha 1: Destaque total -->
+                        <div class="w-full rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <img src="https://lh3.googleusercontent.com/d/1ZLdMzlJAWKvsE6ko25-1HLzMVt81kyLT" class="w-full h-auto object-contain block" alt="Projeto Destaque 1">
+                        </div>
+
+                        <!-- Linha 2: 2 Imagens -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1ix0zpScw2InsdiM2zx70G9QoBC8v8LLM" class="w-full h-auto object-contain block" alt="Projeto Destaque 2">
+                            </div>
+                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1eEPPG0ysE3-SeT1PR0qD5Ph7F5Oxv0xA" class="w-full h-auto object-contain block" alt="Projeto Destaque 3">
+                            </div>
+                        </div>
+
+                        <!-- Linha Intermediária: Destaque Único -->
+                        <div class="w-full rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <img src="https://lh3.googleusercontent.com/d/13YNWbdYShhI8ytLNfOAK1kTOQrMtdP5n" class="w-full h-auto object-contain block" alt="Projeto Destaque Intermediário">
+                        </div>
+
+                        <!-- Linha 3: 3 Imagens -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1nop0e1JY-uRPwo18POzBdkpb9_MzGv3A" class="w-full h-auto object-contain block" alt="Projeto Destaque 4">
+                            </div>
+                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1CC0Q2cfzTbB1kyZkEhtviaWP2RTASG1E" class="w-full h-auto object-contain block" alt="Projeto Destaque 5">
+                            </div>
+                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1yaokGdI_BcHcwAuzQqtopDlZ-3EibgOE" class="w-full h-auto object-contain block" alt="Projeto Destaque 6">
+                            </div>
+                        </div>
+
+                        <!-- Linha 4: Assimétrica (70/30) -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10">
+                            <div class="md:col-span-8 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1TDaOQ6pLUhyQ-h0EIhnysZ5rGloYkEu7" class="w-full h-full object-cover block" alt="Projeto Destaque 7">
+                            </div>
+                            <div class="md:col-span-4 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1IDe1jHZeIeg30Y8hJxYhELfglyXMT7rX" class="w-full h-full object-cover block" alt="Projeto Destaque 8">
+                            </div>
+                        </div>
+
+                        <!-- Linha 5: Assimétrica (40/60) -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center">
+                            <div class="md:col-span-5 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/1CYYNdhftpSvVJqwtUZ2IaQ3Ez3qdWUK_" class="w-full h-auto object-contain block" alt="Projeto Destaque 9">
+                            </div>
+                            <div class="md:col-span-7 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                                <img src="https://lh3.googleusercontent.com/d/19gnUPMkgRoeo6iADueSgYYvM9eglev4W" class="w-full h-auto object-contain block" alt="Projeto Destaque 10">
+                            </div>
+                        </div>
+
+                        <!-- Linha 6: Fechamento -->
+                        <div class="w-full rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <img src="https://lh3.googleusercontent.com/d/1jC-izwY7Adxm7PNM8JvO6GYlsKj-m2Fy" class="w-full h-auto object-contain block" alt="Projeto Destaque 11">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO SOCIAL MEDIA -->
+            <section id="social-media" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900 bg-[#0000FF] text-white rounded-sm my-12">
+                <div class="mb-16 reveal max-w-3xl">
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
+                        SOCIAL<br>MEDIA
+                    </h2>
+                    <p class="font-serif italic text-xl text-white/90 mb-4">
+                        “Comunicação visual pensada para transformar presença em percepção.”
+                    </p>
+                    <p class="text-sm text-white/80 leading-relaxed tracking-wide">
+                        Do conceito à execução, desenvolvo peças que respeitam a identidade da marca, organizam sua comunicação e tornam sua presença digital mais consistente.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-24 reveal reveal-delay-2">
+                    <div class="bg-black/30 backdrop-blur-sm p-6 md:p-10 rounded-sm border border-white/10">
+                        <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+                            <div>
+                                <span class="text-xs uppercase tracking-[0.2em] text-white/70 font-bold block mb-2">DIREÇÃO VISUAL • CONTEÚDO • SOCIAL MEDIA</span>
+                                <h3 class="text-3xl font-bold text-white tracking-tight">TRIBUNAL DO MARKETING</h3>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                            <div class="lg:col-span-5 bg-black/40 rounded-sm overflow-hidden border border-white/10 flex items-center justify-center p-4">
+                                <img src="https://lh3.googleusercontent.com/d/1rSFdzj-P3C7y0M4KvDJHip589zUJ7TZf" alt="Post Tribunal" class="w-full h-auto object-contain max-h-[500px]">
+                            </div>
+                            <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                <img src="https://lh3.googleusercontent.com/d/1zTrfEpK34Lc7wYZ5uf1Fhw62U-e-4Rao" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1hJSCdvvGtem_z29H_ny26x54cuu7b3Gc" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1jic88DBAFk_ZzIXP9cN6SK0pGYDDayHE" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1mhKzTDXXxtEiHakYAxcy6AnYnGbfhaqW" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1xoVkeak1LzNhB_ttJ8qtfdAplPBSAKz4" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1COBcXT-o1mVh4KEpr3std6Fic5em8e8k" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1vxKsGyPjAAJOXuFE5XkSvXigX-QOGqB7" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/13QjcJf1LQq_sd58neKBC0HQxxEz6tmyk" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO WEB DESIGN -->
+            <section id="web-design" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900">
+                <div class="mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
+                        WEB<br>DESIGN
+                    </h2>
+                    <p class="font-serif italic text-xl text-neutral-400">
+                        Experiências digitais pensadas para apresentar, posicionar e converter.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 reveal reveal-delay-2">
+                    <div class="group cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC', 'Nymera Digital')">
+                        <div class="image-box w-full aspect-[3/4] mb-6 group-hover:border-purple-500 transition-colors shadow-sm bg-neutral-900 overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC" alt="Nymera Digital" class="w-full h-full object-cover object-top">
+                        </div>
+                        <p class="text-xs uppercase tracking-widest text-purple-500 font-bold mb-2">SITE INSTITUCIONAL</p>
+                        <h3 class="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-purple-500">Nymera Digital</h3>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu', 'AgentAI')">
+                        <div class="image-box w-full aspect-[3/4] mb-6 group-hover:border-red-500 transition-colors shadow-sm bg-neutral-900 overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu" alt="AgentAI" class="w-full h-full object-cover object-top">
+                        </div>
+                        <p class="text-xs uppercase tracking-widest text-red-500 font-bold mb-2">LANDING PAGE</p>
+                        <h3 class="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-red-500">AgentAI</h3>
+                    </div>
+
+                    <div class="group cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-', 'GreenScape')">
+                        <div class="image-box w-full aspect-[3/4] mb-6 group-hover:border-green-500 transition-colors shadow-sm bg-neutral-900 overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-" alt="GreenScape" class="w-full h-full object-cover object-top">
+                        </div>
+                        <p class="text-xs uppercase tracking-widest text-green-500 font-bold mb-2">LANDING PAGE</p>
+                        <h3 class="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-green-500">GreenScape</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SEÇÃO: SPORTS DESIGN (2 LINHAS RETAS, IMAGENS ENCOSTADAS, TEXTO CENTRALIZADO) -->
+            <!-- ========================================== -->
+            <section id="sports-section" class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 py-32 md:py-48 flex items-center justify-center">
+                
+                <div class="absolute inset-y-0 right-0 w-[160%] md:w-[100%] h-[150vh] -top-[25vh] z-0 flex flex-col justify-center gap-4 opacity-30 pointer-events-none"
+                     style="mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.1) 80%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.1) 80%, transparent 100%);">
+                    
+                    <!-- Linha 1 (Esquerda) -->
+                    <div class="flex gap-0 w-max animate-marquee-left reel-track">
+                        <img src="https://lh3.googleusercontent.com/d/1cFS385mbix0r9aXzuvcIE-a5vubnQhVM" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1Ivu0CIAreJ0hYLRdubr93AMUiXSkCHc2" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1vX08P_6G35F_3p-FqOreseJ013KmrNQd" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1JWrTZPiyH3YQROYu3s3EEkLpxSOdKvec" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1joPjoj8nFtkTnjaasmZbKaqBDbsZtDRV" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <!-- Duplicata Loop -->
+                        <img src="https://lh3.googleusercontent.com/d/1cFS385mbix0r9aXzuvcIE-a5vubnQhVM" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1Ivu0CIAreJ0hYLRdubr93AMUiXSkCHc2" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1vX08P_6G35F_3p-FqOreseJ013KmrNQd" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1JWrTZPiyH3YQROYu3s3EEkLpxSOdKvec" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1joPjoj8nFtkTnjaasmZbKaqBDbsZtDRV" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                    </div>
+
+                    <!-- Linha 2 (Direita) -->
+                    <div class="flex gap-0 w-max animate-marquee-right reel-track" style="transform: translateX(-50%);">
+                        <img src="https://lh3.googleusercontent.com/d/1ucJABRfvpEd09LeUeeO2-ZYqdNBuJ9S3" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1ha4weUeoOMW5JXlDg_KKlvam1qgM2g4y" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1Yma5sUUlKE_iEyCQnQKpKcPGw2TZv79z" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1mxJLoKS5c9s4wgHFDMOAXOpAAavk5b4x" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/11gjDWHwMrXfEfwNwf27gXaY7uFsi7ZWm" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <!-- Duplicata Loop -->
+                        <img src="https://lh3.googleusercontent.com/d/1ucJABRfvpEd09LeUeeO2-ZYqdNBuJ9S3" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1ha4weUeoOMW5JXlDg_KKlvam1qgM2g4y" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1Yma5sUUlKE_iEyCQnQKpKcPGw2TZv79z" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1mxJLoKS5c9s4wgHFDMOAXOpAAavk5b4x" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/11gjDWHwMrXfEfwNwf27gXaY7uFsi7ZWm" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                    </div>
+                </div>
+
+                <div class="relative z-20 w-full px-6 md:px-12 max-w-[1400px] mx-auto text-center flex flex-col items-center reveal">
+                    <div class="max-w-2xl bg-black/60 md:bg-black/40 backdrop-blur-md p-8 md:p-12 rounded-sm border border-white/10">
+                        <span class="text-xs uppercase tracking-[0.2em] text-[#0000FF] font-bold mb-4 block">SPORTS DESIGN</span>
+                        <h2 class="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-white">
+                            Onde design encontra o <span class="font-serif italic text-neutral-400 font-light">jogo.</span>
+                        </h2>
+                        <p class="text-base md:text-lg text-neutral-300 font-light leading-relaxed mb-10 max-w-lg mx-auto">
+                            Uma parte da minha trajetória construída entre clubes, atletas, campanhas e grandes momentos do esporte.
+                        </p>
+                        <button onclick="showSportsView()" class="inline-flex items-center justify-center gap-3 bg-[#0000FF] text-white font-bold px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition-all duration-300 rounded-sm group cursor-pointer shadow-lg">
+                            VER PROJETOS ESPORTIVOS 
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- NOVA SEÇÃO DE TRANSIÇÃO (EDITORIAL NARRATIVA) -->
+            <!-- ========================================== -->
+            <section class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 py-32 md:py-48 flex flex-col items-center">
+                
+                <div class="relative z-10 w-full px-6 md:px-12 max-w-[1000px] mx-auto text-center reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-white mb-6">
+                        Antes de criar, eu preciso entender.
+                    </h2>
+                    
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-6">
+                        "Porque uma marca não precisa apenas parecer certa. Ela precisa fazer sentido."
+                    </p>
+                    
+                    <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-md mx-auto mb-24">
+                        Cada projeto começa com uma pergunta: o que essa marca precisa comunicar, para quem e por quê?
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24 text-left">
+                        <!-- Caixa 01 -->
+                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-sm shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-default">
+                            <span class="text-xs font-bold text-white/70 tracking-widest block mb-4">01</span>
+                            <h4 class="text-white font-bold text-2xl tracking-wide mb-4">ENTENDER</h4>
+                            <p class="text-white/90 text-sm leading-relaxed font-light">Antes de pensar em estética, eu procuro entender o problema, o contexto e o que realmente precisa ser resolvido.</p>
+                        </div>
+                        <!-- Caixa 02 -->
+                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-sm shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-default">
+                            <span class="text-xs font-bold text-white/70 tracking-widest block mb-4">02</span>
+                            <h4 class="text-white font-bold text-2xl tracking-wide mb-4">DIRECIONAR</h4>
+                            <p class="text-white/90 text-sm leading-relaxed font-light">Depois, transformo essas informações em uma direção clara: conceito, posicionamento, linguagem e decisões visuais.</p>
+                        </div>
+                        <!-- Caixa 03 -->
+                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-sm shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-default">
+                            <span class="text-xs font-bold text-white/70 tracking-widest block mb-4">03</span>
+                            <h4 class="text-white font-bold text-2xl tracking-wide mb-4">CONSTRUIR</h4>
+                            <p class="text-white/90 text-sm leading-relaxed font-light">Só então o projeto ganha forma. Cada elemento é construído para reforçar a ideia e tornar a marca mais consistente.</p>
+                        </div>
+                    </div>
+
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-24 reveal reveal-delay-1">
+                        É assim que uma ideia deixa de ser apenas uma ideia e começa a ganhar forma.
+                    </p>
+                </div>
+
+                <div class="w-full px-6 md:px-12 max-w-[1400px] mx-auto text-center reveal reveal-delay-2">
+                    <h3 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-white mb-4">
+                        Algumas ideias que ganharam forma.
+                    </h3>
+                    <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-xl mx-auto mb-16">
+                        Projetos diferentes, problemas diferentes. O processo muda, mas a intenção permanece: criar algo que faça sentido para a marca.
+                    </p>
+                    
+                    <div class="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory hide-scrollbar justify-start xl:justify-center items-center projects-wrapper">
+                        <!-- Projeto 1 -->
+                        <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: 0s;">
+                            <img src="https://lh3.googleusercontent.com/d/1bpDzB_HmvuVnHEILH28dQfVwOfd_9tl3" alt="Projeto 1" class="w-full h-auto object-cover rounded-sm shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                        </div>
+                        <!-- Projeto 2 -->
+                        <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -1.2s;">
+                            <img src="https://lh3.googleusercontent.com/d/1nqoiEaUxvsCmcUlu8VS0RHvvwEqON9aQ" alt="Projeto 2" class="w-full h-auto object-cover rounded-sm shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Direção Visual</span>
+                        </div>
+                        <!-- Projeto 3 -->
+                        <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -2.4s;">
+                            <img src="https://lh3.googleusercontent.com/d/1FT0TNnVsdesQAK6QjDN3O9bEEV09VOMe" alt="Projeto 3" class="w-full h-auto object-cover rounded-sm shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                        </div>
+                        <!-- Projeto 4 -->
+                        <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -3.6s;">
+                            <img src="https://lh3.googleusercontent.com/d/1IDe1jHZeIeg30Y8hJxYhELfglyXMT7rX" alt="Projeto 4" class="w-full h-full object-cover rounded-sm shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                        </div>
+                        <!-- Projeto 5 -->
+                        <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -4.8s;">
+                            <img src="https://lh3.googleusercontent.com/d/1NinXzIJN-PwWZ_YRUl2l3RmAJMBWHHat" alt="Projeto 5" class="w-full h-auto object-cover rounded-sm shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FRASE DE PONTE -->
+            <section class="py-section px-6 md:px-12 max-w-[1400px] mx-auto flex flex-col items-center text-center border-t border-neutral-900">
+                <h2 class="text-5xl md:text-7xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter text-white mb-10 max-w-4xl reveal">
+                    DESIGN NÃO É SÓ<br>FAZER BONITO.
+                </h2>
+                <div class="reveal reveal-delay-2 max-w-2xl">
+                    <p class="font-serif italic text-2xl md:text-3xl text-neutral-300 leading-snug mb-6">
+                        "Antes de escolher uma cor, uma fonte ou uma forma, existe uma decisão: entender o que aquela marca precisa comunicar."
+                    </p>
+                    <p class="text-sm uppercase tracking-widest text-neutral-500 font-bold">
+                        É isso que direciona meu trabalho.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- NOVA SEÇÃO: IMAGEM + BACKGROUND CINEMATOGRÁFICO -->
+            <!-- ========================================== -->
+            <section class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 py-24 md:py-32 flex items-center justify-center">
+                
+                <!-- Animação em 2 Linhas Retas (Imagens encostadas com gap-0) -->
+                <div class="absolute inset-y-0 right-0 w-[160%] md:w-[100%] h-[150vh] -top-[25vh] z-0 flex flex-col justify-center gap-4 opacity-30 pointer-events-none"
+                     style="mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.1) 80%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.1) 80%, transparent 100%);">
+                    
+                    <!-- Linha 1 (Esquerda - Identidade Visual & Social) -->
+                    <div class="flex gap-0 w-max animate-marquee-left reel-track">
+                        <img src="https://lh3.googleusercontent.com/d/1s1IhE163FqPvqqx8_dKYQzGOKXwL6_yu" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1r9yI4N8ZYRHxWwCZCPaaSBuynDYSU_1N" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1PIgvAnOrHIplntVw5BluQfUcTakQkPap" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1rSFdzj-P3C7y0M4KvDJHip589zUJ7TZf" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <!-- Duplicata Loop -->
+                        <img src="https://lh3.googleusercontent.com/d/1s1IhE163FqPvqqx8_dKYQzGOKXwL6_yu" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1r9yI4N8ZYRHxWwCZCPaaSBuynDYSU_1N" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1PIgvAnOrHIplntVw5BluQfUcTakQkPap" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1rSFdzj-P3C7y0M4KvDJHip589zUJ7TZf" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                    </div>
+
+                    <!-- Linha 2 (Direita - Social Media) -->
+                    <div class="flex gap-0 w-max animate-marquee-right reel-track" style="transform: translateX(-50%);">
+                        <img src="https://lh3.googleusercontent.com/d/1zTrfEpK34Lc7wYZ5uf1Fhw62U-e-4Rao" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1hJSCdvvGtem_z29H_ny26x54cuu7b3Gc" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1jic88DBAFk_ZzIXP9cN6SK0pGYDDayHE" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1xoVkeak1LzNhB_ttJ8qtfdAplPBSAKz4" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1COBcXT-o1mVh4KEpr3std6Fic5em8e8k" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <!-- Duplicata Loop -->
+                        <img src="https://lh3.googleusercontent.com/d/1zTrfEpK34Lc7wYZ5uf1Fhw62U-e-4Rao" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1hJSCdvvGtem_z29H_ny26x54cuu7b3Gc" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1jic88DBAFk_ZzIXP9cN6SK0pGYDDayHE" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1xoVkeak1LzNhB_ttJ8qtfdAplPBSAKz4" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                        <img src="https://lh3.googleusercontent.com/d/1COBcXT-o1mVh4KEpr3std6Fic5em8e8k" class="h-44 md:h-60 w-auto object-cover border-0 shadow-none">
+                    </div>
+                </div>
+
+                <!-- Conteúdo em Imagem Central -->
+                <div class="relative z-20 w-full px-6 md:px-12 max-w-[1400px] mx-auto flex justify-center reveal">
+                    <img src="https://lh3.googleusercontent.com/d/1JzPzhDedVM6DmH5a8VQ9UTfIYWy2o35B" alt="Nathan Cardoso" class="w-full max-w-4xl h-auto object-contain">
+                </div>
+            </section>
+
+            <!-- CONTATO -->
+            <section id="contato" class="w-full bg-[#0000FF] text-white">
+                <div class="py-section px-6 md:px-12 max-w-[1400px] mx-auto text-center">
+                    <h2 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight mb-8 reveal text-white">
+                        VAMOS<br>CONSTRUIR?
+                    </h2>
+                    <p class="text-lg text-white/90 max-w-2xl mx-auto mb-16 reveal reveal-delay-1">
+                        Se você está construindo uma marca, reposicionando seu negócio ou precisa transformar sua presença visual, podemos conversar.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 reveal reveal-delay-2">
+                        <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" class="inline-flex items-center justify-center bg-black text-white font-bold px-8 py-4 text-sm tracking-wide hover:bg-neutral-900 transition-colors duration-300 rounded-sm">
+                            FAÇA SEU ORÇAMENTO
+                        </a>
+                        <a href="#portfolio" class="inline-flex items-center justify-center bg-transparent border border-white/30 text-white font-bold px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition-colors duration-300 rounded-sm">
+                            VER PROJETOS
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW: SPORTS DESIGN (PORTFÓLIO COMPLETO SPA) -->
+        <!-- ========================================== -->
+        <div id="sports-view" class="hidden w-full pt-20">
+            
+            <!-- Botão Flutuante Fechar -->
+            <button onclick="showHomeView('#sports-section')" class="fixed top-28 right-6 md:right-12 z-[60] bg-neutral-900/80 text-white p-3 md:pl-5 md:pr-4 rounded-full hover:bg-white hover:text-black transition-colors backdrop-blur-sm cursor-pointer shadow-2xl border border-white/10 flex items-center gap-2 group">
+                <span class="text-[10px] font-bold uppercase tracking-widest hidden md:block">Fechar</span>
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <main class="pb-24">
+                <section class="px-6 md:px-12 max-w-[1400px] mx-auto pt-10 pb-20">
+                    <div class="max-w-4xl">
+                        <button onclick="showHomeView('#sports-section')" class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-neutral-500 uppercase mb-6 hover:text-white transition-colors cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i> Fechar Projetos
+                        </button>
+                        <span class="text-xs font-bold tracking-[0.2em] text-[#0000FF] uppercase mb-4 block">SPORTS DESIGN</span>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight text-white mb-6">
+                            Uma trajetória construída no esporte.
+                        </h1>
+                        <p class="text-base md:text-lg text-neutral-400 font-light leading-relaxed max-w-2xl">
+                            Projetos para clubes, atletas, eventos e campanhas que exigem mais do que uma arte bonita: exigem comunicação, conceito e direção visual.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 01 - COBERTURA DA COPA -->
+                <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
+                    <div class="mb-12 max-w-2xl">
+                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">01</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">COBERTURA DA COPA DO MUNDO</h2>
+                        <p class="text-sm text-neutral-400 font-light leading-relaxed">Identidade e linguagem visual para cobertura da maior competição esportiva. Consistência estética nas vitórias, chamadas e peças especiais.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6">
+                        <div class="sports-item md:col-span-8"><img src="https://lh3.googleusercontent.com/d/1cFS385mbix0r9aXzuvcIE-a5vubnQhVM"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/12ENtg_GHs-2Pj3vcqq5a_yvJ629bvyZO"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1Ivu0CIAreJ0hYLRdubr93AMUiXSkCHc2"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1mAhe65gK1kksRt8IlRn3abEHqvsIACLU"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1BgkdfKnYv-4sVW1IfIvQkqJUbuz839t0"></div>
+                        <div class="sports-item md:col-span-6"><img src="https://lh3.googleusercontent.com/d/1CQdeTReWs-o6jrOGiHvl6QsGSNfJuVaS"></div>
+                        <div class="sports-item md:col-span-6"><img src="https://lh3.googleusercontent.com/d/1Y1dmsFMgrMaa6yU5ydBJf7F3ROr4KNrC"></div>
+                        <div class="sports-item md:col-span-5"><img src="https://lh3.googleusercontent.com/d/19BL8vZh0iudt7F4OcpSqk-K2FCFjf0z7"></div>
+                        <div class="sports-item md:col-span-7"><img src="https://lh3.googleusercontent.com/d/15dpae6r2QM3ICFOO-w14jIziDC7YX0CR"></div>
+                    </div>
+                </section>
+
+                <!-- 02 - CRUZEIRO -->
+                <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
+                    <div class="mb-12 max-w-2xl">
+                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">02</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">CRUZEIRO — É O CABULOSO</h2>
+                        <p class="text-sm text-neutral-400 font-light leading-relaxed">Direção visual e peças desenvolvidas para uma comunicação esportiva com identidade, impacto e conexão com a torcida.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6">
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1vX08P_6G35F_3p-FqOreseJ013KmrNQd"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1JWrTZPiyH3YQROYu3s3EEkLpxSOdKvec"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/156DCoenyHan-fSstD5JfSKNtOdTE_Abv"></div>
+                        <div class="sports-item md:col-span-8"><img src="https://lh3.googleusercontent.com/d/1qD6dEoaziNS_aaHYTACNtjgIrwwNso6K"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1KBUT5y-4Wdc_edptgT-pvE9Pqv61DDP9"></div>
+                        <div class="sports-item md:col-span-6"><img src="https://lh3.googleusercontent.com/d/1asAW5n2gCCiu9FC0XffzJgB9-LP2WyuN"></div>
+                        <div class="sports-item md:col-span-6"><img src="https://lh3.googleusercontent.com/d/1AlfWgzKgZSdJJV0tcw-8BJSSztGCCbMf"></div>
+                        <div class="sports-item md:col-span-7"><img src="https://lh3.googleusercontent.com/d/1XUjyQIQB5DtwTZr-MmbwbvyQy8dKarMF"></div>
+                        <div class="sports-item md:col-span-5"><img src="https://lh3.googleusercontent.com/d/1bTM72C6KpvIP2I5c-VnE8uNDnef83hWD"></div>
+                    </div>
+                </section>
+
+                <!-- 03 - MATCHDAYS -->
+                <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
+                    <div class="mb-12 max-w-2xl">
+                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">03</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">MATCHDAYS</h2>
+                        <p class="text-sm text-neutral-400 font-light leading-relaxed">Design pensado para transformar cada partida em uma experiência visual antes mesmo da bola rolar.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+                        <div class="flex flex-col gap-4 lg:gap-6">
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1joPjoj8nFtkTnjaasmZbKaqBDbsZtDRV"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1hA3EC_UVff_RnEcJ2zwKIJeH55NpOroA"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1O1FKiZ7ERPjX0ijhSDryxBDOFaPUW-PU"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1WIyiY3uQtkdBOIkHMTcV7JJa_ewayqNp"></div>
+                        </div>
+                        <div class="flex flex-col gap-4 lg:gap-6">
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1Yma5sUUlKE_iEyCQnQKpKcPGw2TZv79z"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1myIwtiY0fEnDf2mTmZzXmDbogPa3VW7q"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1BHX6K6fcX_P3e66Dj2Esn_dKnCTljgyh"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/15zwZazEVb9OiiLwhHKeXWAPnGd3eP9ek"></div>
+                        </div>
+                        <div class="flex flex-col gap-4 lg:gap-6">
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1mxJLoKS5c9s4wgHFDMOAXOpAAavk5b4x"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1z2R_DDhLlWKfaVeMjvTx2Q2skFgOzjGC"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1OqUW4ZvfNkz-8sAr5t6CqVBfAiEQ1zxy"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1bfXrVrdMgEJ_he8WLejhIzEtNNV8JWrJ"></div>
+                        </div>
+                        <div class="flex flex-col gap-4 lg:gap-6">
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1X3wEYoNDV9ktIMZDA1mGutie8Hue48ZY"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/141G9JVh-PjS7wzpufq0Qi37AJ5Cfvufa"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1khAARsTc8qbzViqgtCDiMPuBgolOqSlp"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1Tpgiezl7IZbsr5rTke2JWZjOaOorlFc8"></div>
+                            <div class="sports-item"><img src="https://lh3.googleusercontent.com/d/1PnCsQ5-qR1M4qz0YWYKv46-pstt40FMS"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 04 - FUTSTAR -->
+                <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
+                    <div class="mb-12 max-w-2xl">
+                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">04</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">FUTSTAR</h2>
+                        <p class="text-sm text-neutral-400 font-light leading-relaxed">Identidade e comunicação visual para um projeto esportivo que precisava traduzir competição, energia e personalidade.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6">
+                        <div class="sports-item md:col-span-8"><img src="https://lh3.googleusercontent.com/d/1ucJABRfvpEd09LeUeeO2-ZYqdNBuJ9S3"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1ha4weUeoOMW5JXlDg_KKlvam1qgM2g4y"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1-3joNcYyYumbEK1IR4Zv9pXjcb6rTBP0"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1AaH-pHz3Q6_Fftq8u0VAd8vEZTEqzDsw"></div>
+                        <div class="sports-item md:col-span-4"><img src="https://lh3.googleusercontent.com/d/1cg-iHSjwt-A4yHdTnQEsdDmeaZ6iczLV"></div>
+                    </div>
+                </section>
+                
+                <section class="px-6 md:px-12 max-w-[1400px] mx-auto pt-32 pb-10 border-t border-neutral-900 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">Tem um projeto em mente?</h2>
+                    <p class="text-lg text-neutral-400 max-w-2xl mx-auto mb-12 font-light">Se você precisa de direção visual, identidade ou comunicação para o seu projeto esportivo, podemos conversar.</p>
+                    <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" class="inline-flex items-center gap-3 bg-[#0000FF] text-white font-bold px-10 py-5 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-colors duration-300 rounded-sm">
+                        Falar comigo no WhatsApp <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="bg-black py-12 px-6 md:px-12 text-white border-t border-neutral-900 mt-auto w-full">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
+            <div class="text-center md:text-left">
+                <p class="font-bold tracking-tight mb-1 text-white">NATHAN CARDOSO</p>
+                <p class="text-xs text-neutral-500 font-serif italic">Design e estratégia de marcas • Digital</p>
+            </div>
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="https://www.instagram.com/o.nathancard/" target="_blank" class="text-neutral-400 hover:text-white hover:text-[#0000FF] transition-colors">Instagram</a>
+                <a href="https://www.behance.net/flashartstudio" target="_blank" class="text-neutral-400 hover:text-white hover:text-[#0000FF] transition-colors">Behance</a>
+                <a href="mailto:nathanael.antenor@gmail.com" class="text-neutral-400 hover:text-white hover:text-[#0000FF] transition-colors">E-mail</a>
+            </div>
+            <div class="text-xs text-neutral-600">© Nathan Cardoso</div>
+        </div>
+    </footer>
+
+    <!-- Modal Projetos -->
+    <div id="case-modal" class="fixed inset-0 bg-black z-[100] overflow-y-auto opacity-0 invisible">
+        <div class="sticky top-0 left-0 w-full bg-black/90 backdrop-blur-md z-10 p-6 flex justify-between items-center border-b border-neutral-900">
+            <span class="font-bold text-sm tracking-wide text-white" id="modal-project-name">NOME DO PROJETO</span>
+            <button onclick="closeCase()" class="text-neutral-400 hover:text-white flex items-center gap-2 text-sm uppercase tracking-widest font-bold cursor-pointer">
+                Fechar <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        <div class="max-w-[1200px] mx-auto px-6 py-12 md:py-20" id="modal-content"></div>
+    </div>
+
+    <!-- Lightbox Web Design -->
+    <div id="image-lightbox" class="fixed inset-0 bg-black/95 z-[110] opacity-0 invisible transition-all duration-300 overflow-y-auto flex justify-center items-start">
+        <button onclick="closeLightbox()" class="fixed top-6 right-6 z-[120] bg-neutral-900/80 text-white p-3 rounded-full hover:bg-white hover:text-black transition-colors backdrop-blur-sm cursor-pointer">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <div class="w-full max-w-full md:max-w-[90%] my-12 px-4 flex justify-center cursor-pointer" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" class="w-full h-auto shadow-2xl rounded-sm object-contain">
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        // SPA Navigation Logic
+        function showSportsView() {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('sports-view').classList.remove('hidden');
+            window.scrollTo({top: 0, behavior: 'instant'});
+        }
+
+        function showHomeView(hash = null) {
+            document.getElementById('sports-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            
+            if(hash) {
+                setTimeout(() => {
+                    const el = document.querySelector(hash);
+                    if(el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 50);
+            } else {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+
+        const projectsData = {
+            'tribunal': {
+                name: 'TRIBUNAL DO MARKETING',
+                context: 'A Identidade Visual do Tribunal do Marketing foi projetada para impor autoridade absoluta e fugir dos clichês do mercado digital tradicional.',
+                assets: [
+                    'https://lh3.googleusercontent.com/d/1nhbhhyVKQ8Xf80MgQ6GeJ60zBQQm1j6z',
+                    'https://lh3.googleusercontent.com/d/1pVAcMOuoc8c9yOz2_kBZTYK6VUY9Gfj6',
+                    'https://lh3.googleusercontent.com/d/1XaAOUNw1AaH1Q6Bgl_A09z7W1u08XsCJ',
+                    'https://lh3.googleusercontent.com/d/1ww89iNuDSnu8oyHXTbjPWayRKT8XjJ31',
+                    'https://lh3.googleusercontent.com/d/1beVm4HoLdmTPqhPJS7Re-J1iDbd1knYc',
+                    'https://lh3.googleusercontent.com/d/1k09jzt2YIGmxzHVko20CpC1GCD6qVt-b',
+                    'https://lh3.googleusercontent.com/d/1vyS79xS2o2MGcrVeLV_6uwIXjZtaQ361',
+                    'https://lh3.googleusercontent.com/d/11vVy26sfyz4n0WLvJI58Rf_cIjKjKhAr',
+                    'https://lh3.googleusercontent.com/d/1CP36IDQhkszLkdDXlmHjwqvpfM484FTm',
+                    'https://lh3.googleusercontent.com/d/1DulZzwdlUlpBPgzgwzA4ZP7RXxOpIzXY',
+                    'https://lh3.googleusercontent.com/d/11gjDWHwMrXfEfwNwf27gXaY7uFsi7ZWm'
+                ]
+            },
+            'convertbio': {
+                name: 'CONVERTBIO',
+                context: 'A ConvertBio precisava de uma identidade que comunicasse inovação, tecnologia e sustentabilidade com extrema clareza estética.',
+                assets: [
+                    'https://lh3.googleusercontent.com/d/1FtIK1paNTzHG7eCsa8zVkvt3tXCTdn0-',
+                    'https://lh3.googleusercontent.com/d/14SuB4UHifJ5AV-q8_tsh3raqdkG8eJdW',
+                    'https://lh3.googleusercontent.com/d/1CFWldzULah6sF6zejuKX-pU53TZKVHB_',
+                    'https://lh3.googleusercontent.com/d/1qC2KqSakFslDlJH-_4bjrkCSiUpRngmE',
+                    'https://lh3.googleusercontent.com/d/1uQ7YoSio9FcFpAu3He8xYYTegcO3pyuV',
+                    'https://lh3.googleusercontent.com/d/1dAbpo9GWrSdgYyCJ0FLvE7ndza3sLIoZ',
+                    'https://lh3.googleusercontent.com/d/13W7n_LI39iTcR8FHTRLQOHb7Z5zO0SaS',
+                    'https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A',
+                    'https://lh3.googleusercontent.com/d/1cf2TTflvWA8ibfY9u9aBalUJSkXg_XfE',
+                    'https://lh3.googleusercontent.com/d/10GqrGoYNA_djdY-G7eJbWBo9HBNC9Xg8',
+                    'https://lh3.googleusercontent.com/d/1kj6uemHkFeeiGm4YxdaBLOV1DyzN4n9m'
+                ]
+            },
+            'gomerry': {
+                name: 'GOMERRY',
+                context: 'A Gomerry buscou uma identidade visual que equilibrasse o aconchego de uma cafeteria clássica com um posicionamento contemporâneo.',
+                assets: [
+                    'https://lh3.googleusercontent.com/d/1ZzAEPnJyFkK5OObqpPutNlPvTdJGIvnQ',
+                    'https://lh3.googleusercontent.com/d/1iy1wTQKlDNPzP4t87j6tN-hsU274rQnx',
+                    'https://lh3.googleusercontent.com/d/1eD_YDsHgq_ygqoJuW2aHAbQ3udYpt3Wq',
+                    'https://lh3.googleusercontent.com/d/1rWzmVn5KBpmCUEjkyiI8uZIZxG0B6fn2',
+                    'https://lh3.googleusercontent.com/d/1PxAveA8IqYrdDsRGdczxRgf9Ctl7Pq-9',
+                    'https://lh3.googleusercontent.com/d/1llbIJrk_1HKBJyomAWyUKRKwg0_i6dtj',
+                    'https://lh3.googleusercontent.com/d/1j0JlZmHtoy4Dss9nV10Qe3OxbDmJIN1_',
+                    'https://lh3.googleusercontent.com/d/1FA0737dk2-dD2tH1fZSqCh46SKaBSGtO',
+                    'https://lh3.googleusercontent.com/d/1vW_N7h__wg6htqM8FGMwi-_l9Ueu-j6H',
+                    'https://lh3.googleusercontent.com/d/1Xp72WVCZVlVHtP2IOyTgyziHEyK0Q86c',
+                    'https://lh3.googleusercontent.com/d/1eZQCCcRsfWDcuvjMeInqnD2L7dx6T1TC',
+                    'https://lh3.googleusercontent.com/d/1mTK7QIT0W7VkOCffS4Cq-iuC2CUJhQv9'
+                ]
+            },
+            'kovax': {
+                name: 'KOVAX',
+                context: 'A identidade visual da Kovax foi desenvolvida para transmitir força, precisão e uma estética industrial moderna.',
+                assets: [
+                    'https://lh3.googleusercontent.com/d/1m83kzy0GHlCbNiNruYYYV_gGEaAaRwpT',
+                    'https://lh3.googleusercontent.com/d/15vCPEf43IoLd71IQvXgU7KcRJsaS9nsD',
+                    'https://lh3.googleusercontent.com/d/1MV6NKnUADiwI6D1MDWEQPbxOoCwD1tof',
+                    'https://lh3.googleusercontent.com/d/1yFtx2R885voXFQ_mxobity9gznbC4UOI',
+                    'https://lh3.googleusercontent.com/d/1D-sA2P2WoP2SdC2SdsoosbO0opJr9fHk',
+                    'https://lh3.googleusercontent.com/d/1ENS870N41q865fOCBkvRKEc8BPe8Hxc3',
+                    'https://lh3.googleusercontent.com/d/1qq2msJwFPFAvhWn6Bhm7DcIYqzdfITbu',
+                    'https://lh3.googleusercontent.com/d/1n-HXSVUEEinZEFlcMxmwbHPkzxtveDR2',
+                    'https://lh3.googleusercontent.com/d/1bbBTtNDjIAjXoCQg5sSVRWvhg9NOaJhr',
+                    'https://lh3.googleusercontent.com/d/19dxA4lLrd2VSwp6-FzBRjZ618B8Jk-EG',
+                    'https://lh3.googleusercontent.com/d/1tfzP_kl14G6i_wQfTsXemWjvTEAHBgTZ',
+                    'https://lh3.googleusercontent.com/d/1oluOB3xOkBewN-UpvpFAt2lBMryZ3iph'
+                ]
+            }
+        };
+
+        const caseModal = document.getElementById('case-modal');
+        const modalTitle = document.getElementById('modal-project-name');
+        const modalContent = document.getElementById('modal-content');
+
+        function openCase(projectId) {
+            const data = projectsData[projectId];
+            if(!data) return;
+
+            modalTitle.innerText = data.name;
+            let html = `
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                    <div class="md:col-span-4"><h3 class="text-xs uppercase tracking-widest text-neutral-500 font-bold mb-4">CONTEXTO & DESAFIO</h3></div>
+                    <div class="md:col-span-8"><p class="text-xl md:text-2xl font-medium leading-relaxed text-white">${data.context}</p></div>
+                </div>
+                <div class="flex flex-col gap-10 mb-24">
+            `;
+            data.assets.forEach(src => {
+                html += `<div class="w-full rounded-sm overflow-hidden bg-neutral-900 border border-neutral-800"><img src="${src}" class="w-full h-auto block object-contain mx-auto"></div>`;
+            });
+            html += `</div>`;
+            modalContent.innerHTML = html;
+            caseModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            caseModal.scrollTo(0, 0);
+        }
+
+        function closeCase() {
+            caseModal.classList.remove('open');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { modalContent.innerHTML = ''; }, 400);
+        }
+
+        const lightbox = document.getElementById('image-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            lightbox.scrollTo(0,0);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+        }
+    </script>
+</body>
+</html>
