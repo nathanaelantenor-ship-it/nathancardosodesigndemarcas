@@ -156,27 +156,29 @@
         .reveal-delay-1 { transition-delay: 100ms; }
         .reveal-delay-2 { transition-delay: 200ms; }
 
-        /* Componentes de Projeto */
+        /* Componentes de Projeto com Acabamento Editorial */
         .image-box {
              position: relative;
              overflow: hidden;
-             border-radius: 0.125rem;
-             transition: all 0.4s ease;
-             border: 1px solid #1f1f1f;
+             border-radius: 2px;
+             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+             border: 1px solid rgba(255, 255, 255, 0.08);
+             background-color: #080808;
         }
         .image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .project-card:hover .image-box,
         .project-card:focus-visible .image-box {
             border-color: #0000FF;
+            box-shadow: 0 12px 32px -8px rgba(0, 0, 255, 0.18);
         }
         .project-card:hover .image-box img,
         .project-card:focus-visible .image-box img {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
         .project-card:hover .project-title,
         .project-card:focus-visible .project-title {
@@ -187,15 +189,15 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             border-top: 1px solid #262626;
             background-color: transparent;
-            padding: 1.5rem;
-            border-radius: 0.375rem;
+            padding: 1.75rem 1.5rem;
+            border-radius: 2px;
         }
         .process-card:hover,
         .process-card:focus-visible {
             border-color: #0000FF;
             background-color: #0000FF;
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(0, 0, 255, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 255, 0.25);
         }
         .process-card:hover .process-number,
         .process-card:hover .process-icon,
@@ -211,9 +213,9 @@
         .sports-item {
             position: relative;
             overflow: hidden;
-            border-radius: 0.125rem;
+            border-radius: 2px;
             background-color: #0a0a0a;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .sports-item img {
@@ -224,13 +226,13 @@
             transition: transform 0.8s ease;
         }
         .sports-item:hover {
-            transform: translateY(-4px) scale(1.01);
+            transform: translateY(-4px);
             border-color: #0000FF;
             box-shadow: 0 15px 30px -5px rgba(0, 0, 255, 0.15);
             z-index: 10;
         }
         .sports-item:hover img {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
         /* Projetos Flutuantes da Seção de Transição Editorial */
@@ -244,7 +246,7 @@
         }
         @keyframes projectFloat {
             0% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(-1deg) rotateZ(0deg); }
-            50% { transform: translate3d(0, -12px, 18px) rotateX(2deg) rotateY(3deg) rotateZ(-0.5deg); }
+            50% { transform: translate3d(0, -10px, 14px) rotateX(1.5deg) rotateY(2.5deg) rotateZ(-0.5deg); }
             100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(-1deg) rotateZ(0deg); }
         }
 
@@ -282,20 +284,20 @@
 <body class="font-sans antialiased">
 
     <!-- CABEÇALHO / HEADER -->
-    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 backdrop-blur-md bg-black/40 border-b border-white/5">
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 backdrop-blur-md bg-black/50 border-b border-white/[0.06]">
         <div class="max-w-[1400px] mx-auto flex justify-between items-start md:items-center flex-col md:flex-row gap-4 md:gap-0">
             <a href="#" onclick="showHomeView(); return false;" class="flex flex-col group cursor-pointer" aria-label="Nathan Cardoso - Início">
                 <span class="font-bold tracking-tight text-lg text-white group-hover:text-[#0000FF] transition-colors">NATHAN CARDOSO</span>
-                <span class="text-white/60 text-sm tracking-wide group-hover:text-white/80 transition-colors">Estratégia de marcas e design</span>
+                <span class="text-white/60 text-xs tracking-wide group-hover:text-white/80 transition-colors">Estratégia de marcas e design</span>
             </a>
             
-            <nav aria-label="Navegação Principal Desktop" class="hidden lg:flex gap-6 text-sm font-medium tracking-wide items-center">
-                <a href="#sobre" onclick="showHomeView('#sobre'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Sobre</a>
-                <a href="#processo" onclick="showHomeView('#processo'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Processo</a>
-                <a href="#portfolio" onclick="showHomeView('#portfolio'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Identidade</a>
-                <a href="#social-media" onclick="showHomeView('#social-media'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Social</a>
-                <a href="#web-design" onclick="showHomeView('#web-design'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Web</a>
-                <a href="#sports-section" onclick="showHomeView('#sports-section'); return false;" class="text-white/70 hover:text-white hover:text-[#0000FF] transition-colors">Sports</a>
+            <nav aria-label="Navegação Principal Desktop" class="hidden lg:flex gap-8 text-xs uppercase tracking-widest font-semibold items-center">
+                <a href="#sobre" onclick="showHomeView('#sobre'); return false;" class="text-white/60 hover:text-[#0000FF] transition-colors">Sobre</a>
+                <a href="#processo" onclick="showHomeView('#processo'); return false;" class="text-white/60 hover:text-[#0000FF] transition-colors">Processo</a>
+                <a href="#portfolio" onclick="showHomeView('#portfolio'); return false;" class="text-white/60 hover:text-[#0000FF] transition-colors">Identidade</a>
+                <a href="#social-media" onclick="showHomeView('#social-media'); return false;" class="text-white/60 hover:text-[#0000FF] transition-colors">Social</a>
+                <a href="#web-design" onclick="showHomeView('#web-design'); return false;" class="text-white/60 hover:text-[#0000FF] transition-colors">Web</a>
+                <a href="#sports-section" onclick="showHomeView('#sports-section'); return false;" class="text-white/60 hover:text-[#0000FF] transition-colors">Sports</a>
                 <a href="#contato" onclick="showHomeView('#contato'); return false;" class="text-white font-bold hover:text-[#0000FF] transition-colors">Contato</a>
             </nav>
             
@@ -323,7 +325,7 @@
         <div id="home-view" class="block w-full">
             
             <!-- HERO SECTION -->
-            <section id="hero" class="relative min-h-screen flex items-center w-full bg-black overflow-hidden pt-20">
+            <section id="hero" class="relative min-h-screen flex items-center w-full bg-black overflow-hidden pt-24 pb-16">
                 <div class="absolute inset-y-0 right-0 w-full md:w-[70%] h-full z-0 pointer-events-none" 
                      style="mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,1) 100%); 
                             -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,1) 100%);">
@@ -331,18 +333,18 @@
                 </div>
 
                 <div class="relative z-10 w-full px-6 md:px-12 max-w-[1400px] mx-auto animate-fade-in-slow">
-                    <div class="w-full md:w-[60%] lg:w-[50%] flex flex-col justify-center">
+                    <div class="w-full md:w-[62%] lg:w-[52%] flex flex-col justify-center">
                         <div class="mb-8">
-                            <span class="text-xs font-bold tracking-[0.2em] text-white uppercase mb-1 block">Nathan Cardoso</span>
-                            <p class="text-[11px] uppercase tracking-[0.15em] text-neutral-500 font-medium">Estrategista de Marcas + Design</p>
+                            <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-1 block">Nathan Cardoso</span>
+                            <p class="text-[11px] uppercase tracking-[0.18em] text-neutral-500 font-medium">Estrategista de Marcas + Design</p>
                         </div>
 
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight text-white mb-6">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.08] tracking-[-0.03em] text-white mb-6">
                             Eu não começo pelo visual.<br>
                             Começo pelo que a marca precisa <span class="text-[#0000FF] font-semibold">dizer.</span>
                         </h1>
                         
-                        <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-sm mb-12">
+                        <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-md mb-12">
                             Estratégia, identidade e presença digital para marcas e empresas que buscam clareza, direção e autoridade.
                         </p>
 
@@ -366,7 +368,7 @@
             </section>
 
             <!-- SEÇÃO SOBRE -->
-            <section id="sobre" class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 flex items-center min-h-screen py-24 md:py-32">
+            <section id="sobre" class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 flex items-center min-h-screen py-24 md:py-36">
                 <div class="absolute inset-y-0 left-0 w-[150%] md:w-[75%] h-[150vh] -top-[25vh] z-0 flex flex-col justify-center gap-6 transform -rotate-8 opacity-40 pointer-events-none"
                      style="mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.05) 20%, rgba(0,0,0,1) 60%); -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.05) 20%, rgba(0,0,0,1) 60%);">
                     
@@ -406,20 +408,20 @@
                         <img src="https://lh3.googleusercontent.com/d/1FtIK1paNTzHG7eCsa8zVkvt3tXCTdn0-" alt="Símbolo ConvertBio" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
                         <!-- Loop Repetição -->
                         <img src="https://lh3.googleusercontent.com/d/1bTV8EgOnU2hs9FojlJybzIei9TbvsVY-" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
-                        <img src="https://lh3.googleusercontent.com/d/1is0xEZIv8tRAUwYwqX9srJIaYdCk5uXx" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
-                        <img src="https://lh3.googleusercontent.com/d/13VjDbHGH03UAwXJmdx1TWBfKK-d_F6Fz" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
-                        <img src="https://lh3.googleusercontent.com/d/1mTK7QIT0W7VkOCffS4Cq-iuC2CUJhQv9" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
-                        <img src="https://lh3.googleusercontent.com/d/1FtIK1paNTzHG7eCsa8zVkvt3tXCTdn0-" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover rounded-sm border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1is0xEZIv8tRAUwYwqX9srJIaYdCk5uXx" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover border-0 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/13VjDbHGH03UAwXJmdx1TWBfKK-d_F6Fz" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1mTK7QIT0W7VkOCffS4Cq-iuC2CUJhQv9" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover border border-neutral-900 shadow-2xl">
+                        <img src="https://lh3.googleusercontent.com/d/1FtIK1paNTzHG7eCsa8zVkvt3tXCTdn0-" alt="" loading="lazy" decoding="async" class="h-48 md:h-64 w-auto object-cover border border-neutral-900 shadow-2xl">
                     </div>
                 </div>
 
                 <div class="relative z-10 w-full px-6 md:px-12 max-w-[1400px] mx-auto flex justify-end">
                     <div class="w-full md:w-[60%] lg:w-[45%] flex flex-col justify-center items-end text-right bg-black/60 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-6 md:p-0 rounded-sm">
-                        <span class="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold mb-6 w-full text-right">SOBRE O NATHAN</span>
+                        <span class="text-[11px] uppercase tracking-[0.25em] text-[#0000FF] font-bold mb-4 w-full text-right block">SOBRE O NATHAN</span>
                         <h2 class="text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight text-white mb-6 w-full text-right">
                             Eu não começo pelo <span class="text-[#0000FF] font-semibold">design.</span>
                         </h2>
-                        <p class="font-serif italic text-xl md:text-2xl text-neutral-400 mb-8 max-w-sm leading-snug w-full text-right">
+                        <p class="font-serif italic text-xl md:text-2xl text-neutral-300 mb-8 max-w-sm leading-snug w-full text-right">
                             "Começo tentando entender o negócio, o contexto e o que existe por trás dele."
                         </p>
                         <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-sm mb-16 w-full text-right">
@@ -429,15 +431,15 @@
                         <div class="flex flex-col items-end text-right gap-8 pt-10 border-t border-neutral-900/80 w-full max-w-xs">
                             <div class="w-full">
                                 <p class="text-[#0000FF] font-bold text-2xl mb-1">+4 anos</p>
-                                <p class="text-[10px] uppercase tracking-[0.15em] text-neutral-500">De experiência em branding</p>
+                                <p class="text-[10px] uppercase tracking-[0.18em] text-neutral-500">De experiência em branding</p>
                             </div>
                             <div class="w-full">
                                 <p class="text-white font-bold text-lg mb-1 uppercase tracking-wide">Identidade Visual</p>
-                                <p class="text-[10px] uppercase tracking-[0.15em] text-neutral-500">Núcleo estratégico do trabalho</p>
+                                <p class="text-[10px] uppercase tracking-[0.18em] text-neutral-500">Núcleo estratégico do trabalho</p>
                             </div>
                             <div class="w-full">
                                 <p class="text-white font-bold text-lg mb-1 uppercase tracking-wide">Social & Web</p>
-                                <p class="text-[10px] uppercase tracking-[0.15em] text-neutral-500">Extensão nos pontos de contato</p>
+                                <p class="text-[10px] uppercase tracking-[0.18em] text-neutral-500">Extensão nos pontos de contato</p>
                             </div>
                         </div>
                     </div>
@@ -445,9 +447,9 @@
             </section>
 
             <!-- FAIXA AZUL -->
-            <section class="relative w-full bg-[#0000FF] text-center py-16 md:py-20 reveal">
+            <section class="relative w-full bg-[#0000FF] text-center py-16 md:py-24 reveal">
                 <div class="max-w-[1400px] mx-auto px-6">
-                    <p class="text-2xl md:text-4xl lg:text-[3.5rem] font-medium leading-[1.6] tracking-tight text-white">
+                    <p class="text-2xl md:text-4xl lg:text-[3.25rem] font-medium leading-[1.4] tracking-tight text-white max-w-4xl mx-auto">
                         Antes de construir uma marca,<br class="hidden md:block">
                         é preciso entender o negócio e <span class="text-white font-semibold">para onde ele quer ir.</span>
                     </p>
@@ -457,49 +459,50 @@
             <!-- SEÇÃO PROCESSO -->
             <section id="processo" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto">
                 <div class="mb-20 reveal">
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">MÉTODO</span>
                     <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
-                        MEU<br>PROCESSO
+                        MEU PROCESSO
                     </h2>
-                    <p class="font-serif italic text-xl text-neutral-400">
+                    <p class="font-serif italic text-xl text-neutral-300">
                         O projeto começa muito antes de abrir qualquer ferramenta de design.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 reveal reveal-delay-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 reveal reveal-delay-2">
                     <div class="process-card cursor-pointer group" tabindex="0">
                         <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">01</span>
-                            <i data-lucide="search" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">01</span>
+                            <i data-lucide="search" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">ENTENDER</h3>
-                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Diagnóstico profundo do negócio, mercado, público e o verdadeiro problema a ser resolvido.</p>
+                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">ENTENDER</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Diagnóstico profundo do negócio, mercado, público e o verdadeiro problema a ser resolvido.</p>
                     </div>
                     
                     <div class="process-card cursor-pointer group" tabindex="0">
                         <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">02</span>
-                            <i data-lucide="compass" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">02</span>
+                            <i data-lucide="compass" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">DIRECIONAR</h3>
-                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Definição de conceito, posicionamento, referências estratégicas e tom de voz visual.</p>
+                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">DIRECIONAR</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Definição de conceito, posicionamento, referências estratégicas e tom de voz visual.</p>
                     </div>
 
                     <div class="process-card cursor-pointer group" tabindex="0">
                         <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">03</span>
-                            <i data-lucide="pen-tool" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">03</span>
+                            <i data-lucide="pen-tool" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">CONSTRUIR</h3>
-                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Criação do sistema de identidade visual, tipografia, cores, símbolos e diretrizes de aplicação.</p>
+                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">CONSTRUIR</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Criação do sistema de identidade visual, tipografia, cores, símbolos e diretrizes de aplicação.</p>
                     </div>
 
                     <div class="process-card cursor-pointer group" tabindex="0">
                         <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-sm font-bold text-neutral-500 transition-colors">04</span>
-                            <i data-lucide="layers" class="process-icon w-5 h-5 text-neutral-600 transition-colors"></i>
+                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">04</span>
+                            <i data-lucide="layers" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white transition-colors">APLICAR</h3>
-                        <p class="text-neutral-400 text-sm leading-relaxed transition-colors">Desdobramento da marca para pontos de contato reais — digital, editorial, web e presença consistente.</p>
+                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">APLICAR</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Desdobramento da marca para pontos de contato reais — digital, editorial, web e presença consistente.</p>
                     </div>
                 </div>
             </section>
@@ -507,29 +510,30 @@
             <!-- SEÇÃO IDENTIDADE VISUAL -->
             <section id="portfolio" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900">
                 <div class="mb-16 reveal">
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">NÚCLEO DO TRABALHO</span>
                     <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
-                        IDENTIDADE<br>VISUAL
+                        IDENTIDADE VISUAL
                     </h2>
-                    <p class="font-serif italic text-xl text-neutral-400 mb-4">
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-300 mb-4">
                         Marcas construídas com estratégia para serem reconhecidas, lembradas e respeitadas.
                     </p>
-                    <p class="text-sm text-neutral-500 font-light max-w-xl leading-relaxed">
+                    <p class="text-xs md:text-sm text-neutral-400 font-light max-w-xl leading-relaxed">
                         Sua empresa cresceu, mas a percepção visual ainda não reflete a qualidade do seu trabalho? Construo sistemas de identidade pensados para posicionar negócios no patamar que eles merecem.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal reveal-delay-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 reveal reveal-delay-2">
                     <article class="project-card cursor-pointer group focus-visible:outline-none" onclick="openCase('tribunal')" onkeydown="handleCardKeydown(event, 'tribunal')" role="button" tabindex="0" aria-label="Abrir case Tribunal do Marketing">
                         <div class="image-box w-full aspect-[4/3] mb-6">
                             <img src="https://lh3.googleusercontent.com/d/1s1IhE163FqPvqqx8_dKYQzGOKXwL6_yu" alt="Identidade Visual do Tribunal do Marketing" loading="lazy" decoding="async" class="w-full h-full object-cover">
                         </div>
-                        <div class="flex justify-between items-end">
+                        <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-1">PROJETO 01 • AUTORIDADE & POSICIONAMENTO</p>
-                                <h3 class="project-title text-2xl font-bold text-white transition-colors">TRIBUNAL DO MARKETING</h3>
+                                <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">PROJETO 01 • AUTORIDADE & POSICIONAMENTO</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors tracking-tight">TRIBUNAL DO MARKETING</h3>
                                 <p class="text-xs text-neutral-400 font-light mt-1">Identidade construída para romper os clichês do mercado digital e estabelecer presença imponente.</p>
                             </div>
-                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4"></i>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4 mt-1"></i>
                         </div>
                     </article>
 
@@ -537,13 +541,13 @@
                         <div class="image-box w-full aspect-[4/3] mb-6">
                             <img src="https://lh3.googleusercontent.com/d/1IOGApLAwUQAAOpHtJachTHkXe7VDqj3A" alt="Identidade Visual e Branding ConvertBio" loading="lazy" decoding="async" class="w-full h-full object-cover">
                         </div>
-                        <div class="flex justify-between items-end">
+                        <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-1">PROJETO 02 • INOVAÇÃO & SUSTENTABILIDADE</p>
-                                <h3 class="project-title text-2xl font-bold text-white transition-colors">CONVERTBIO</h3>
+                                <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">PROJETO 02 • INOVAÇÃO & SUSTENTABILIDADE</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors tracking-tight">CONVERTBIO</h3>
                                 <p class="text-xs text-neutral-400 font-light mt-1">Tradução de tecnologia bio-química em clareza visual e credibilidade para investidores e mercado.</p>
                             </div>
-                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4"></i>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4 mt-1"></i>
                         </div>
                     </article>
                     
@@ -551,13 +555,13 @@
                         <div class="image-box w-full aspect-[4/3] mb-6">
                             <img src="https://lh3.googleusercontent.com/d/1r9yI4N8ZYRHxWwCZCPaaSBuynDYSU_1N" alt="Identidade Visual da Cafeteria Gomerry" loading="lazy" decoding="async" class="w-full h-full object-cover">
                         </div>
-                        <div class="flex justify-between items-end">
+                        <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-1">PROJETO 03 • BRANDING & EXPERIÊNCIA</p>
-                                <h3 class="project-title text-2xl font-bold text-white transition-colors">GOMERRY</h3>
+                                <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">PROJETO 03 • BRANDING & EXPERIÊNCIA</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors tracking-tight">GOMERRY</h3>
                                 <p class="text-xs text-neutral-400 font-light mt-1">Transição de uma cafeteria tradicional para uma marca contemporânea, acolhedora e escalável.</p>
                             </div>
-                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4"></i>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4 mt-1"></i>
                         </div>
                     </article>
 
@@ -565,13 +569,13 @@
                         <div class="image-box w-full aspect-[4/3] mb-6">
                             <img src="https://lh3.googleusercontent.com/d/1PIgvAnOrHIplntVw5BluQfUcTakQkPap" alt="Identidade Visual Industrial Kovax" loading="lazy" decoding="async" class="w-full h-full object-cover">
                         </div>
-                        <div class="flex justify-between items-end">
+                        <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs uppercase tracking-widest text-neutral-500 mb-1">PROJETO 04 • PRECISÃO & FORÇA INDUSTRIAL</p>
-                                <h3 class="project-title text-2xl font-bold text-white transition-colors">KOVAX</h3>
+                                <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">PROJETO 04 • PRECISÃO & FORÇA INDUSTRIAL</p>
+                                <h3 class="project-title text-2xl font-bold text-white transition-colors tracking-tight">KOVAX</h3>
                                 <p class="text-xs text-neutral-400 font-light mt-1">Identidade moderna desenvolvida para transmitir solidez técnica e alto rigor estético.</p>
                             </div>
-                            <i data-lucide="arrow-up-right" class="w-6 h-6 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4"></i>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 text-neutral-600 group-hover:text-[#0000FF] transition-colors shrink-0 ml-4 mt-1"></i>
                         </div>
                     </article>
                 </div>
@@ -580,71 +584,71 @@
                 <div class="mt-24 md:mt-32 pt-16 border-t border-neutral-900 reveal">
                     <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div>
-                            <p class="text-xs uppercase tracking-widest text-[#0000FF] font-bold mb-2">CASE COMPLETO • DESTAQUE</p>
-                            <h3 class="text-3xl md:text-4xl font-bold text-white">REDE DE JOVENS AVIVA</h3>
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold mb-2 block">CASE COMPLETO • DESTAQUE</span>
+                            <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">REDE DE JOVENS AVIVA</h3>
                         </div>
-                        <p class="text-sm text-neutral-400 font-light max-w-sm leading-relaxed">
+                        <p class="text-xs md:text-sm text-neutral-400 font-light max-w-sm leading-relaxed">
                             Do conceito à aplicação: como a estratégia visual organiza múltiplos pontos de contato em um ecossistema coerente, gerando identificação imediata e presença memorável.
                         </p>
                     </div>
 
-                    <!-- Layout Colagem -->
-                    <div class="flex flex-col gap-6 md:gap-10">
+                    <!-- Layout Colagem com respiro e acabamento editorial -->
+                    <div class="flex flex-col gap-6 md:gap-8">
                         <!-- Linha 1: Destaque total -->
-                        <div class="w-full rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="w-full rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                             <img src="https://lh3.googleusercontent.com/d/1ZLdMzlJAWKvsE6ko25-1HLzMVt81kyLT" class="w-full h-auto object-contain block" alt="Rede Aviva - Identidade Visual e Tipografia" loading="lazy" decoding="async">
                         </div>
 
                         <!-- Linha 2: 2 Imagens -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                            <div class="rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1ix0zpScw2InsdiM2zx70G9QoBC8v8LLM" class="w-full h-auto object-contain block" alt="Rede Aviva - Aplicações Gráficas" loading="lazy" decoding="async">
                             </div>
-                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <div class="rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1eEPPG0ysE3-SeT1PR0qD5Ph7F5Oxv0xA" class="w-full h-auto object-contain block" alt="Rede Aviva - Materiais Promocionais" loading="lazy" decoding="async">
                             </div>
                         </div>
 
                         <!-- Linha Intermediária: Destaque Único -->
-                        <div class="w-full rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="w-full rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                             <img src="https://lh3.googleusercontent.com/d/13YNWbdYShhI8ytLNfOAK1kTOQrMtdP5n" class="w-full h-auto object-contain block" alt="Rede Aviva - Conceito e Símbolo" loading="lazy" decoding="async">
                         </div>
 
                         <!-- Linha 3: 3 Imagens -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                            <div class="rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1nop0e1JY-uRPwo18POzBdkpb9_MzGv3A" class="w-full h-auto object-contain block" alt="Rede Aviva - Cartazes e Peças" loading="lazy" decoding="async">
                             </div>
-                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <div class="rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1CC0Q2cfzTbB1kyZkEhtviaWP2RTASG1E" class="w-full h-auto object-contain block" alt="Rede Aviva - Crachás e Identificação" loading="lazy" decoding="async">
                             </div>
-                            <div class="rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <div class="rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1yaokGdI_BcHcwAuzQqtopDlZ-3EibgOE" class="w-full h-auto object-contain block" alt="Rede Aviva - Detalhes do Design" loading="lazy" decoding="async">
                             </div>
                         </div>
 
                         <!-- Linha 4: Assimétrica (70/30) -->
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10">
-                            <div class="md:col-span-8 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+                            <div class="md:col-span-8 rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1TDaOQ6pLUhyQ-h0EIhnysZ5rGloYkEu7" class="w-full h-full object-cover block" alt="Rede Aviva - Painel Principal" loading="lazy" decoding="async">
                             </div>
-                            <div class="md:col-span-4 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <div class="md:col-span-4 rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1IDe1jHZeIeg30Y8hJxYhELfglyXMT7rX" class="w-full h-full object-cover block" alt="Rede Aviva - Mockup Editorial" loading="lazy" decoding="async">
                             </div>
                         </div>
 
                         <!-- Linha 5: Assimétrica (40/60) -->
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center">
-                            <div class="md:col-span-5 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+                            <div class="md:col-span-5 rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/1CYYNdhftpSvVJqwtUZ2IaQ3Ez3qdWUK_" class="w-full h-auto object-contain block" alt="Rede Aviva - Detalhe 1" loading="lazy" decoding="async">
                             </div>
-                            <div class="md:col-span-7 rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                            <div class="md:col-span-7 rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                                 <img src="https://lh3.googleusercontent.com/d/19gnUPMkgRoeo6iADueSgYYvM9eglev4W" class="w-full h-auto object-contain block" alt="Rede Aviva - Detalhe 2" loading="lazy" decoding="async">
                             </div>
                         </div>
 
                         <!-- Linha 6: Fechamento -->
-                        <div class="w-full rounded-sm overflow-hidden bg-neutral-900/30 border border-neutral-800/50">
+                        <div class="w-full rounded-[2px] overflow-hidden bg-neutral-950 border border-white/[0.08]">
                             <img src="https://lh3.googleusercontent.com/d/1jC-izwY7Adxm7PNM8JvO6GYlsKj-m2Fy" class="w-full h-auto object-contain block" alt="Rede Aviva - Visão Geral do Sistema Visual" loading="lazy" decoding="async">
                         </div>
                     </div>
@@ -652,41 +656,42 @@
             </section>
 
             <!-- SEÇÃO SOCIAL MEDIA (EXTENSÃO DA IDENTIDADE) -->
-            <section id="social-media" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900 bg-[#0000FF] text-white rounded-sm my-12">
+            <section id="social-media" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900 bg-[#0000FF] text-white rounded-[2px] my-16 shadow-2xl">
                 <div class="mb-16 reveal max-w-3xl">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/80 uppercase mb-4 block">PRESENÇA DIGITAL</span>
                     <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
-                        SOCIAL<br>MEDIA
+                        SOCIAL MEDIA
                     </h2>
-                    <p class="font-serif italic text-xl text-white/90 mb-4">
+                    <p class="font-serif italic text-xl md:text-2xl text-white/95 mb-4 leading-snug">
                         “Comunicação visual pensada para transformar presença digital em percepção de valor.”
                     </p>
-                    <p class="text-sm text-white/80 leading-relaxed tracking-wide">
+                    <p class="text-xs md:text-sm text-white/85 leading-relaxed tracking-wide">
                         Você sente que sua comunicação parece diferente a cada publicação? Levo a estratégia da identidade visual para o ambiente digital, organizando a narrativa visual e garantindo consistência em cada ponto de contato com seu público.
                     </p>
                 </div>
 
                 <div class="flex flex-col gap-24 reveal reveal-delay-2">
-                    <div class="bg-black/30 backdrop-blur-sm p-6 md:p-10 rounded-sm border border-white/10">
+                    <div class="bg-black/30 backdrop-blur-sm p-6 md:p-10 rounded-[2px] border border-white/10">
                         <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
                             <div>
-                                <span class="text-xs uppercase tracking-[0.2em] text-white/70 font-bold block mb-2">DIREÇÃO VISUAL • CONTEÚDO • SOCIAL MEDIA</span>
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold block mb-2">DIREÇÃO VISUAL • CONTEÚDO • SOCIAL MEDIA</span>
                                 <h3 class="text-3xl font-bold text-white tracking-tight">TRIBUNAL DO MARKETING</h3>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                            <div class="lg:col-span-5 bg-black/40 rounded-sm overflow-hidden border border-white/10 flex items-center justify-center p-4">
+                            <div class="lg:col-span-5 bg-black/40 rounded-[2px] overflow-hidden border border-white/10 flex items-center justify-center p-4">
                                 <img src="https://lh3.googleusercontent.com/d/1rSFdzj-P3C7y0M4KvDJHip589zUJ7TZf" alt="Post Principal Tribunal do Marketing" loading="lazy" decoding="async" class="w-full h-auto object-contain max-h-[500px]">
                             </div>
                             <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                                <img src="https://lh3.googleusercontent.com/d/1zTrfEpK34Lc7wYZ5uf1Fhw62U-e-4Rao" alt="Postagem Social Media 1" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/1hJSCdvvGtem_z29H_ny26x54cuu7b3Gc" alt="Postagem Social Media 2" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/1jic88DBAFk_ZzIXP9cN6SK0pGYDDayHE" alt="Postagem Social Media 3" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/1mhKzTDXXxtEiHakYAxcy6AnYnGbfhaqW" alt="Postagem Social Media 4" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/1xoVkeak1LzNhB_ttJ8qtfdAplPBSAKz4" alt="Postagem Social Media 5" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/1COBcXT-o1mVh4KEpr3std6Fic5em8e8k" alt="Postagem Social Media 6" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/1vxKsGyPjAAJOXuFE5XkSvXigX-QOGqB7" alt="Postagem Social Media 7" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
-                                <img src="https://lh3.googleusercontent.com/d/13QjcJf1LQq_sd58neKBC0HQxxEz6tmyk" alt="Postagem Social Media 8" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-sm bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1zTrfEpK34Lc7wYZ5uf1Fhw62U-e-4Rao" alt="Postagem Social Media 1" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1hJSCdvvGtem_z29H_ny26x54cuu7b3Gc" alt="Postagem Social Media 2" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1jic88DBAFk_ZzIXP9cN6SK0pGYDDayHE" alt="Postagem Social Media 3" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1mhKzTDXXxtEiHakYAxcy6AnYnGbfhaqW" alt="Postagem Social Media 4" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1xoVkeak1LzNhB_ttJ8qtfdAplPBSAKz4" alt="Postagem Social Media 5" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1COBcXT-o1mVh4KEpr3std6Fic5em8e8k" alt="Postagem Social Media 6" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/1vxKsGyPjAAJOXuFE5XkSvXigX-QOGqB7" alt="Postagem Social Media 7" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
+                                <img src="https://lh3.googleusercontent.com/d/13QjcJf1LQq_sd58neKBC0HQxxEz6tmyk" alt="Postagem Social Media 8" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-[2px] bg-black/40 border border-white/10">
                             </div>
                         </div>
                     </div>
@@ -696,42 +701,43 @@
             <!-- SEÇÃO WEB DESIGN (EXTENSÃO DA IDENTIDADE) -->
             <section id="web-design" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto border-t border-neutral-900">
                 <div class="mb-16 reveal">
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">EXPERIÊNCIA DIGITAL</span>
                     <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
-                        WEB<br>DESIGN
+                        WEB DESIGN
                     </h2>
-                    <p class="font-serif italic text-xl text-neutral-400 mb-4">
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-300 mb-4">
                         Experiências digitais pensadas para apresentar, posicionar e gerar autoridade.
                     </p>
-                    <p class="text-sm text-neutral-500 font-light max-w-xl leading-relaxed">
+                    <p class="text-xs md:text-sm text-neutral-400 font-light max-w-xl leading-relaxed">
                         Seu site realmente posiciona sua empresa ou apenas ocupa espaço na internet? Desenvolvo interfaces orientadas à clareza, velocidade e autoridade da sua marca.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 reveal reveal-delay-2">
-                    <div class="group cursor-pointer focus-visible:outline-none" onclick="openLightbox('https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC', 'Nymera Digital')" onkeydown="handleLightboxKeydown(event, 'https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC', 'Nymera Digital')" role="button" tabindex="0" aria-label="Visualizar projeto Nymera Digital expandido">
-                        <div class="image-box w-full aspect-[3/4] mb-6 group-hover:border-purple-500 transition-colors shadow-sm bg-neutral-900 overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 reveal reveal-delay-2">
+                    <div class="project-card group cursor-pointer focus-visible:outline-none" onclick="openLightbox('https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC', 'Nymera Digital')" onkeydown="handleLightboxKeydown(event, 'https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC', 'Nymera Digital')" role="button" tabindex="0" aria-label="Visualizar projeto Nymera Digital expandido">
+                        <div class="image-box w-full aspect-[3/4] mb-6 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/1qUcTXu8odXoyeQl77M0HFfEcdJrNdPeC" alt="Web Design do site institucional Nymera Digital" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
                         </div>
-                        <p class="text-xs uppercase tracking-widest text-purple-500 font-bold mb-2">SITE INSTITUCIONAL</p>
-                        <h3 class="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-purple-500">Nymera Digital</h3>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">SITE INSTITUCIONAL</p>
+                        <h3 class="project-title text-2xl font-bold text-white mb-1 transition-colors tracking-tight">Nymera Digital</h3>
                         <p class="text-xs text-neutral-400 font-light">Presença digital estratégica para empresa de tecnologia e consultoria.</p>
                     </div>
 
-                    <div class="group cursor-pointer focus-visible:outline-none" onclick="openLightbox('https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu', 'AgentAI')" onkeydown="handleLightboxKeydown(event, 'https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu', 'AgentAI')" role="button" tabindex="0" aria-label="Visualizar landing page AgentAI expandida">
-                        <div class="image-box w-full aspect-[3/4] mb-6 group-hover:border-red-500 transition-colors shadow-sm bg-neutral-900 overflow-hidden">
+                    <div class="project-card group cursor-pointer focus-visible:outline-none" onclick="openLightbox('https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu', 'AgentAI')" onkeydown="handleLightboxKeydown(event, 'https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu', 'AgentAI')" role="button" tabindex="0" aria-label="Visualizar landing page AgentAI expandida">
+                        <div class="image-box w-full aspect-[3/4] mb-6 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/106byrGzK3i84hNtW_uLjPMAD0zT0E_pu" alt="Web Design da Landing Page AgentAI" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
                         </div>
-                        <p class="text-xs uppercase tracking-widest text-red-500 font-bold mb-2">LANDING PAGE</p>
-                        <h3 class="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-red-500">AgentAI</h3>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">LANDING PAGE</p>
+                        <h3 class="project-title text-2xl font-bold text-white mb-1 transition-colors tracking-tight">AgentAI</h3>
                         <p class="text-xs text-neutral-400 font-light">Estrutura de alta conversão para ecossistema de inteligência artificial.</p>
                     </div>
 
-                    <div class="group cursor-pointer focus-visible:outline-none" onclick="openLightbox('https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-', 'GreenScape')" onkeydown="handleLightboxKeydown(event, 'https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-', 'GreenScape')" role="button" tabindex="0" aria-label="Visualizar landing page GreenScape expandida">
-                        <div class="image-box w-full aspect-[3/4] mb-6 group-hover:border-green-500 transition-colors shadow-sm bg-neutral-900 overflow-hidden">
+                    <div class="project-card group cursor-pointer focus-visible:outline-none" onclick="openLightbox('https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-', 'GreenScape')" onkeydown="handleLightboxKeydown(event, 'https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-', 'GreenScape')" role="button" tabindex="0" aria-label="Visualizar landing page GreenScape expandida">
+                        <div class="image-box w-full aspect-[3/4] mb-6 overflow-hidden">
                             <img src="https://lh3.googleusercontent.com/d/1nOejDAckAeToJaizKCNkZvlJzAozZQT-" alt="Web Design da Landing Page GreenScape" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
                         </div>
-                        <p class="text-xs uppercase tracking-widest text-green-500 font-bold mb-2">LANDING PAGE</p>
-                        <h3 class="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-green-500">GreenScape</h3>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-semibold mb-1">LANDING PAGE</p>
+                        <h3 class="project-title text-2xl font-bold text-white mb-1 transition-colors tracking-tight">GreenScape</h3>
                         <p class="text-xs text-neutral-400 font-light">Design com apelo visual sustentável focado em posicionamento e captação.</p>
                     </div>
                 </div>
@@ -777,15 +783,15 @@
                 </div>
 
                 <div class="relative z-20 w-full px-6 md:px-12 max-w-[1400px] mx-auto text-center flex flex-col items-center reveal">
-                    <div class="max-w-2xl bg-black/60 md:bg-black/40 backdrop-blur-md p-8 md:p-12 rounded-sm border border-white/10">
-                        <span class="text-xs uppercase tracking-[0.2em] text-[#0000FF] font-bold mb-4 block">SPORTS DESIGN • TRAJETÓRIA & ESPECIALIDADE</span>
+                    <div class="max-w-2xl bg-black/70 backdrop-blur-md p-8 md:p-14 rounded-[2px] border border-white/10 shadow-2xl">
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-[#0000FF] font-bold mb-4 block">SPORTS DESIGN • TRAJETÓRIA & ESPECIALIDADE</span>
                         <h2 class="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-white">
                             Onde design encontra o <span class="font-serif italic text-neutral-400 font-light">jogo.</span>
                         </h2>
-                        <p class="text-base md:text-lg text-neutral-300 font-light leading-relaxed mb-10 max-w-lg mx-auto">
+                        <p class="text-sm md:text-base text-neutral-300 font-light leading-relaxed mb-10 max-w-lg mx-auto">
                             Uma parte sólida da minha trajetória construída entre clubes, atletas, campanhas e grandes momentos do esporte. Comunicação visual com conceito, energia e impacto cultural.
                         </p>
-                        <button onclick="showSportsView()" class="inline-flex items-center justify-center gap-3 bg-[#0000FF] text-white font-bold px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition-all duration-300 rounded-sm group cursor-pointer shadow-lg" aria-label="Abrir galeria de projetos esportivos">
+                        <button onclick="showSportsView()" class="inline-flex items-center justify-center gap-3 bg-[#0000FF] text-white font-bold px-8 py-4 text-xs md:text-sm tracking-[0.15em] uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-[2px] group cursor-pointer shadow-xl" aria-label="Abrir galeria de projetos esportivos">
                             VER PROJETOS ESPORTIVOS 
                             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                         </button>
@@ -799,40 +805,41 @@
             <section class="relative w-full bg-[#030303] overflow-hidden border-t border-neutral-900 py-32 md:py-48 flex flex-col items-center">
                 
                 <div class="relative z-10 w-full px-6 md:px-12 max-w-[1000px] mx-auto text-center reveal">
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">DIREÇÃO & MÉTODO</span>
                     <h2 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-white mb-6">
                         Antes de criar, eu preciso entender.
                     </h2>
                     
-                    <p class="font-serif italic text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-6">
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-300 max-w-2xl mx-auto leading-relaxed mb-6">
                         "Porque uma marca não precisa apenas parecer bonita. Ela precisa fazer sentido para o negócio."
                     </p>
                     
-                    <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-md mx-auto mb-24">
+                    <p class="text-xs md:text-sm text-neutral-400 font-light leading-relaxed max-w-md mx-auto mb-20">
                         Cada projeto começa com uma pergunta fundamental: o que essa marca precisa comunicar, para quem e com qual objetivo?
                     </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24 text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 text-left">
                         <!-- Caixa 01 -->
-                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-sm shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-default">
-                            <span class="text-xs font-bold text-white/70 tracking-widest block mb-4">01</span>
-                            <h3 class="text-white font-bold text-2xl tracking-wide mb-4">ENTENDER</h3>
-                            <p class="text-white/90 text-sm leading-relaxed font-light">Antes de pensar em estética, analiso o cenário do negócio, os desafios de posicionamento e o que realmente precisa ser solucionado.</p>
+                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-[2px] shadow-2xl hover:-translate-y-1 transition-transform duration-300 cursor-default">
+                            <span class="text-xs font-bold text-white/70 tracking-[0.2em] block mb-4">01</span>
+                            <h3 class="text-white font-bold text-xl tracking-tight mb-3">ENTENDER</h3>
+                            <p class="text-white/90 text-xs sm:text-sm leading-relaxed font-light">Antes de pensar em estética, analiso o cenário do negócio, os desafios de posicionamento e o que realmente precisa ser solucionado.</p>
                         </div>
                         <!-- Caixa 02 -->
-                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-sm shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-default">
-                            <span class="text-xs font-bold text-white/70 tracking-widest block mb-4">02</span>
-                            <h3 class="text-white font-bold text-2xl tracking-wide mb-4">DIRECIONAR</h3>
-                            <p class="text-white/90 text-sm leading-relaxed font-light">Transformo essas análises em uma direção estratégica clara: conceito, linguagem visual, decisões de design e regras de aplicação.</p>
+                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-[2px] shadow-2xl hover:-translate-y-1 transition-transform duration-300 cursor-default">
+                            <span class="text-xs font-bold text-white/70 tracking-[0.2em] block mb-4">02</span>
+                            <h3 class="text-white font-bold text-xl tracking-tight mb-3">DIRECIONAR</h3>
+                            <p class="text-white/90 text-xs sm:text-sm leading-relaxed font-light">Transformo essas análises em uma direção estratégica clara: conceito, linguagem visual, decisões de design e regras de aplicação.</p>
                         </div>
                         <!-- Caixa 03 -->
-                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-sm shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-default">
-                            <span class="text-xs font-bold text-white/70 tracking-widest block mb-4">03</span>
-                            <h3 class="text-white font-bold text-2xl tracking-wide mb-4">CONSTRUIR</h3>
-                            <p class="text-white/90 text-sm leading-relaxed font-light">A identidade ganha vida em um ecossistema consistente, preparado para sustentar o crescimento e a reputação da marca.</p>
+                        <div class="bg-[#0000FF] p-8 md:p-10 rounded-[2px] shadow-2xl hover:-translate-y-1 transition-transform duration-300 cursor-default">
+                            <span class="text-xs font-bold text-white/70 tracking-[0.2em] block mb-4">03</span>
+                            <h3 class="text-white font-bold text-xl tracking-tight mb-3">CONSTRUIR</h3>
+                            <p class="text-white/90 text-xs sm:text-sm leading-relaxed font-light">A identidade ganha vida em um ecossistema consistente, preparado para sustentar o crescimento e a reputação da marca.</p>
                         </div>
                     </div>
 
-                    <p class="font-serif italic text-xl md:text-2xl text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-24 reveal reveal-delay-1">
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-300 max-w-2xl mx-auto leading-relaxed mb-20 reveal reveal-delay-1">
                         É assim que uma ideia deixa de ser apenas uma intenção e se transforma em um ativo de valor.
                     </p>
                 </div>
@@ -841,35 +848,35 @@
                     <h3 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-white mb-4">
                         Algumas ideias que ganharam forma.
                     </h3>
-                    <p class="text-sm md:text-base text-neutral-400 font-light leading-relaxed max-w-xl mx-auto mb-16">
+                    <p class="text-xs md:text-sm text-neutral-400 font-light leading-relaxed max-w-xl mx-auto mb-16">
                         Projetos reais com objetivos claros. O processo se adapta a cada desafio, mas o rigor estratégico permanece.
                     </p>
                     
                     <div class="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory hide-scrollbar justify-start xl:justify-center items-center projects-wrapper">
                         <!-- Projeto 1 -->
                         <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: 0s;">
-                            <img src="https://lh3.googleusercontent.com/d/1bpDzB_HmvuVnHEILH28dQfVwOfd_9tl3" alt="Projeto de Identidade Visual 1" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-sm shadow-2xl">
-                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                            <img src="https://lh3.googleusercontent.com/d/1bpDzB_HmvuVnHEILH28dQfVwOfd_9tl3" alt="Projeto de Identidade Visual 1" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-[2px] shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold">Identidade Visual</span>
                         </div>
                         <!-- Projeto 2 -->
                         <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -1.2s;">
-                            <img src="https://lh3.googleusercontent.com/d/1nqoiEaUxvsCmcUlu8VS0RHvvwEqON9aQ" alt="Projeto de Direção Visual 2" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-sm shadow-2xl">
-                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Direção Visual</span>
+                            <img src="https://lh3.googleusercontent.com/d/1nqoiEaUxvsCmcUlu8VS0RHvvwEqON9aQ" alt="Projeto de Direção Visual 2" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-[2px] shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold">Direção Visual</span>
                         </div>
                         <!-- Projeto 3 -->
                         <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -2.4s;">
-                            <img src="https://lh3.googleusercontent.com/d/1FT0TNnVsdesQAK6QjDN3O9bEEV09VOMe" alt="Projeto de Identidade Visual 3" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-sm shadow-2xl">
-                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                            <img src="https://lh3.googleusercontent.com/d/1FT0TNnVsdesQAK6QjDN3O9bEEV09VOMe" alt="Projeto de Identidade Visual 3" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-[2px] shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold">Identidade Visual</span>
                         </div>
                         <!-- Projeto 4 -->
                         <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -3.6s;">
-                            <img src="https://lh3.googleusercontent.com/d/1IDe1jHZeIeg30Y8hJxYhELfglyXMT7rX" alt="Projeto de Identidade Visual 4" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-sm shadow-2xl">
-                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                            <img src="https://lh3.googleusercontent.com/d/1IDe1jHZeIeg30Y8hJxYhELfglyXMT7rX" alt="Projeto de Identidade Visual 4" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-[2px] shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold">Identidade Visual</span>
                         </div>
                         <!-- Projeto 5 -->
                         <div class="snap-center shrink-0 w-[280px] md:w-[240px] xl:w-[220px] flex flex-col gap-4 floating-project hover:scale-105 transition-transform duration-500 cursor-pointer" style="animation-delay: -4.8s;">
-                            <img src="https://lh3.googleusercontent.com/d/1NinXzIJN-PwWZ_YRUl2l3RmAJMBWHHat" alt="Projeto de Identidade Visual 5" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-sm shadow-2xl">
-                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold">Identidade Visual</span>
+                            <img src="https://lh3.googleusercontent.com/d/1NinXzIJN-PwWZ_YRUl2l3RmAJMBWHHat" alt="Projeto de Identidade Visual 5" loading="lazy" decoding="async" class="w-full h-auto object-cover rounded-[2px] shadow-2xl">
+                            <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold">Identidade Visual</span>
                         </div>
                     </div>
                 </div>
@@ -877,14 +884,14 @@
 
             <!-- FRASE DE PONTE -->
             <section class="py-section px-6 md:px-12 max-w-[1400px] mx-auto flex flex-col items-center text-center border-t border-neutral-900">
-                <h2 class="text-5xl md:text-7xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter text-white mb-10 max-w-4xl reveal">
+                <h2 class="text-4xl sm:text-6xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tighter text-white mb-10 max-w-4xl reveal">
                     DESIGN NÃO É SÓ<br>FAZER BONITO.
                 </h2>
                 <div class="reveal reveal-delay-2 max-w-2xl">
-                    <p class="font-serif italic text-2xl md:text-3xl text-neutral-300 leading-snug mb-6">
+                    <p class="font-serif italic text-xl md:text-3xl text-neutral-300 leading-snug mb-6">
                         "Antes de escolher uma cor, uma tipografia ou uma forma, existe uma decisão estratégica: entender o que aquela marca precisa comunicar e como ela deve ser percebida."
                     </p>
-                    <p class="text-sm uppercase tracking-widest text-neutral-500 font-bold">
+                    <p class="text-xs uppercase tracking-[0.25em] text-[#0000FF] font-bold">
                         É esse direcionamento que transforma design em resultado.
                     </p>
                 </div>
@@ -939,18 +946,18 @@
             <!-- CONTATO / CTA FINAL ESTRATÉGICO -->
             <section id="contato" class="w-full bg-[#0000FF] text-white">
                 <div class="py-section px-6 md:px-12 max-w-[1400px] mx-auto text-center">
-                    <h2 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight mb-8 reveal text-white">
+                    <h2 class="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight mb-6 reveal text-white">
                         VAMOS CONVERSAR<br>SOBRE SEU PROJETO?
                     </h2>
-                    <p class="text-lg text-white/90 max-w-2xl mx-auto mb-16 reveal reveal-delay-1">
+                    <p class="text-base sm:text-lg text-white/90 max-w-2xl mx-auto mb-14 reveal reveal-delay-1 font-light">
                         Se você está reposicionando sua empresa, criando uma nova marca ou precisa estruturar sua presença visual com consistência e autoridade, podemos conversar diretamente sobre o seu momento.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row justify-center gap-6 reveal reveal-delay-2">
-                        <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-black text-white font-bold px-8 py-4 text-sm tracking-wide hover:bg-neutral-900 transition-colors duration-300 rounded-sm min-h-[48px]">
+                    <div class="flex flex-col sm:flex-row justify-center gap-5 reveal reveal-delay-2">
+                        <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-black text-white font-bold px-8 py-4 text-xs md:text-sm tracking-[0.15em] uppercase hover:bg-neutral-900 transition-all duration-300 rounded-[2px] min-h-[48px] shadow-2xl">
                             FALAR COMIGO NO WHATSAPP
                         </a>
-                        <a href="#portfolio" class="inline-flex items-center justify-center bg-transparent border border-white/30 text-white font-bold px-8 py-4 text-sm tracking-wide hover:bg-white hover:text-black transition-colors duration-300 rounded-sm min-h-[48px]">
+                        <a href="#portfolio" class="inline-flex items-center justify-center bg-transparent border border-white/30 text-white font-bold px-8 py-4 text-xs md:text-sm tracking-[0.15em] uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-[2px] min-h-[48px]">
                             VER PROJETOS
                         </a>
                     </div>
@@ -975,7 +982,7 @@
                         <button onclick="showHomeView('#sports-section')" class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-neutral-500 uppercase mb-6 hover:text-white transition-colors cursor-pointer" aria-label="Voltar para a página inicial">
                             <i data-lucide="x" class="w-4 h-4"></i> Fechar Projetos
                         </button>
-                        <span class="text-xs font-bold tracking-[0.2em] text-[#0000FF] uppercase mb-4 block">SPORTS DESIGN</span>
+                        <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">SPORTS DESIGN</span>
                         <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight text-white mb-6">
                             Uma trajetória construída no esporte.
                         </h2>
@@ -988,7 +995,7 @@
                 <!-- 01 - COBERTURA DA COPA -->
                 <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
                     <div class="mb-12 max-w-2xl">
-                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">01</span>
+                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">01</span>
                         <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">COBERTURA DA COPA DO MUNDO</h3>
                         <p class="text-sm text-neutral-400 font-light leading-relaxed">Identidade e linguagem visual para cobertura da maior competição esportiva. Consistência estética nas vitórias, chamadas e peças especiais.</p>
                     </div>
@@ -1008,7 +1015,7 @@
                 <!-- 02 - CRUZEIRO -->
                 <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
                     <div class="mb-12 max-w-2xl">
-                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">02</span>
+                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">02</span>
                         <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">CRUZEIRO — É O CABULOSO</h3>
                         <p class="text-sm text-neutral-400 font-light leading-relaxed">Direção visual e peças desenvolvidas para uma comunicação esportiva com identidade, impacto e conexão com a torcida.</p>
                     </div>
@@ -1028,7 +1035,7 @@
                 <!-- 03 - MATCHDAYS -->
                 <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
                     <div class="mb-12 max-w-2xl">
-                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">03</span>
+                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">03</span>
                         <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">MATCHDAYS</h3>
                         <p class="text-sm text-neutral-400 font-light leading-relaxed">Design pensado para transformar cada partida em uma experiência visual antes mesmo da bola rolar.</p>
                     </div>
@@ -1064,7 +1071,7 @@
                 <!-- 04 - FUTSTAR -->
                 <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-16 border-t border-neutral-900">
                     <div class="mb-12 max-w-2xl">
-                        <span class="text-xs uppercase tracking-widest text-neutral-500 font-bold block mb-2">04</span>
+                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">04</span>
                         <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">FUTSTAR</h3>
                         <p class="text-sm text-neutral-400 font-light leading-relaxed">Identidade e comunicação visual para um projeto esportivo que precisava traduzir competição, energia e personalidade.</p>
                     </div>
@@ -1079,8 +1086,8 @@
                 
                 <section class="px-6 md:px-12 max-w-[1400px] mx-auto pt-32 pb-10 border-t border-neutral-900 text-center">
                     <h3 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">Tem um projeto em mente?</h3>
-                    <p class="text-lg text-neutral-400 max-w-2xl mx-auto mb-12 font-light">Se você precisa de direção visual, identidade ou comunicação para o seu projeto esportivo, podemos conversar.</p>
-                    <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#0000FF] text-white font-bold px-10 py-5 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-colors duration-300 rounded-sm min-h-[48px]">
+                    <p class="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto mb-12 font-light">Se você precisa de direção visual, identidade ou comunicação para o seu projeto esportivo, podemos conversar.</p>
+                    <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#0000FF] text-white font-bold px-10 py-5 text-xs md:text-sm tracking-[0.15em] uppercase hover:bg-white hover:text-black transition-colors duration-300 rounded-[2px] min-h-[48px]">
                         Falar comigo no WhatsApp <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </section>
@@ -1095,10 +1102,10 @@
                 <p class="font-bold tracking-tight mb-1 text-white">NATHAN CARDOSO</p>
                 <p class="text-xs text-neutral-500 font-serif italic">Estratégia de marcas e design • Presença Digital</p>
             </div>
-            <div class="flex gap-6 text-sm font-medium">
-                <a href="https://www.instagram.com/o.nathancard/" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white hover:text-[#0000FF] transition-colors py-1">Instagram</a>
-                <a href="https://www.behance.net/flashartstudio" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white hover:text-[#0000FF] transition-colors py-1">Behance</a>
-                <a href="mailto:nathanael.antenor@gmail.com" class="text-neutral-400 hover:text-white hover:text-[#0000FF] transition-colors py-1">E-mail</a>
+            <div class="flex gap-8 text-xs uppercase tracking-widest font-semibold">
+                <a href="https://www.instagram.com/o.nathancard/" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-[#0000FF] transition-colors py-1">Instagram</a>
+                <a href="https://www.behance.net/flashartstudio" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-[#0000FF] transition-colors py-1">Behance</a>
+                <a href="mailto:nathanael.antenor@gmail.com" class="text-neutral-400 hover:text-[#0000FF] transition-colors py-1">E-mail</a>
             </div>
             <div class="text-xs text-neutral-600">© Nathan Cardoso</div>
         </div>
@@ -1108,7 +1115,7 @@
     <div id="case-modal" class="fixed inset-0 bg-black z-[100] overflow-y-auto opacity-0 invisible" role="dialog" aria-modal="true" aria-labelledby="modal-project-name">
         <div class="sticky top-0 left-0 w-full bg-black/90 backdrop-blur-md z-10 p-6 flex justify-between items-center border-b border-neutral-900">
             <span class="font-bold text-sm tracking-wide text-white" id="modal-project-name">NOME DO PROJETO</span>
-            <button onclick="closeCase()" class="text-neutral-400 hover:text-white flex items-center gap-2 text-sm uppercase tracking-widest font-bold cursor-pointer min-h-[44px] min-w-[44px] justify-end" aria-label="Fechar detalhes do projeto">
+            <button onclick="closeCase()" class="text-neutral-400 hover:text-white flex items-center gap-2 text-xs uppercase tracking-widest font-bold cursor-pointer min-h-[44px] min-w-[44px] justify-end" aria-label="Fechar detalhes do projeto">
                 Fechar <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
@@ -1297,23 +1304,23 @@
             modalTitle.innerText = data.name;
             let html = `
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 border-b border-neutral-800/80 pb-12">
-                    <div class="bg-neutral-900/40 p-6 rounded-sm border border-neutral-800/50">
-                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">01 • DESAFIO</span>
-                        <p class="text-sm font-light text-neutral-300 leading-relaxed">${data.problem}</p>
+                    <div class="bg-neutral-900/40 p-6 rounded-[2px] border border-neutral-800/50">
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-2">01 • DESAFIO</span>
+                        <p class="text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">${data.problem}</p>
                     </div>
-                    <div class="bg-neutral-900/40 p-6 rounded-sm border border-neutral-800/50">
-                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">02 • DIREÇÃO ESTRATÉGICA</span>
-                        <p class="text-sm font-light text-neutral-300 leading-relaxed">${data.direction}</p>
+                    <div class="bg-neutral-900/40 p-6 rounded-[2px] border border-neutral-800/50">
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-2">02 • DIREÇÃO ESTRATÉGICA</span>
+                        <p class="text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">${data.direction}</p>
                     </div>
-                    <div class="bg-neutral-900/40 p-6 rounded-sm border border-neutral-800/50">
-                        <span class="text-xs uppercase tracking-widest text-[#0000FF] font-bold block mb-2">03 • SOLUÇÃO VISUAL</span>
-                        <p class="text-sm font-light text-neutral-300 leading-relaxed">${data.solution}</p>
+                    <div class="bg-neutral-900/40 p-6 rounded-[2px] border border-neutral-800/50">
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-2">03 • SOLUÇÃO VISUAL</span>
+                        <p class="text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">${data.solution}</p>
                     </div>
                 </div>
-                <div class="flex flex-col gap-10 mb-24">
+                <div class="flex flex-col gap-8 md:gap-10 mb-24">
             `;
             data.assets.forEach((src, idx) => {
-                html += `<div class="w-full rounded-sm overflow-hidden bg-neutral-900 border border-neutral-800"><img src="${src}" alt="Peça ${idx + 1} do projeto ${data.name}" loading="lazy" decoding="async" class="w-full h-auto block object-contain mx-auto"></div>`;
+                html += `<div class="w-full rounded-[2px] overflow-hidden bg-neutral-950 border border-neutral-800"><img src="${src}" alt="Peça ${idx + 1} do projeto ${data.name}" loading="lazy" decoding="async" class="w-full h-auto block object-contain mx-auto"></div>`;
             });
             html += `</div>`;
             modalContent.innerHTML = html;
