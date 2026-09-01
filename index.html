@@ -190,29 +190,64 @@
             color: #0000FF;
         }
 
-        .process-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border-top: 1px solid #262626;
-            background-color: transparent;
-            padding: 1.75rem 1.5rem;
-            border-radius: 2px;
+        /* Módulos Interativos da Seção Processo */
+        .process-module-grid:hover .process-tab-btn:not(:hover) {
+            opacity: 0.5;
         }
-        .process-card:hover,
-        .process-card:focus-visible {
-            border-color: #0000FF;
+        .process-tab-btn {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background-color: #080808;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 2px solid rgba(255, 255, 255, 0.15);
+        }
+        .process-tab-btn:hover,
+        .process-tab-btn:focus-visible {
             background-color: #0000FF;
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 255, 0.25);
+            border-color: #0000FF;
+            border-top-color: #ffffff;
+            transform: translateY(-4px);
+            opacity: 1 !important;
+            box-shadow: 0 16px 36px -8px rgba(0, 0, 255, 0.35);
         }
-        .process-card:hover .process-number,
-        .process-card:hover .process-icon,
-        .process-card:hover h3,
-        .process-card:hover p,
-        .process-card:focus-visible .process-number,
-        .process-card:focus-visible .process-icon,
-        .process-card:focus-visible h3,
-        .process-card:focus-visible p {
+        .process-tab-btn.is-active {
+            background-color: #0000FF;
+            border-color: #0000FF;
+            border-top-color: #ffffff;
+            opacity: 1 !important;
+            box-shadow: 0 16px 36px -8px rgba(0, 0, 255, 0.35);
+        }
+        .process-tab-btn:hover .step-num,
+        .process-tab-btn:focus-visible .step-num,
+        .process-tab-btn.is-active .step-num,
+        .process-tab-btn:hover .step-icon,
+        .process-tab-btn:focus-visible .step-icon,
+        .process-tab-btn.is-active .step-icon,
+        .process-tab-btn:hover .step-title,
+        .process-tab-btn:focus-visible .step-title,
+        .process-tab-btn.is-active .step-title,
+        .process-tab-btn:hover .step-desc,
+        .process-tab-btn:focus-visible .step-desc,
+        .process-tab-btn.is-active .step-desc,
+        .process-tab-btn:hover .step-action,
+        .process-tab-btn:focus-visible .step-action,
+        .process-tab-btn.is-active .step-action {
             color: #ffffff !important;
+        }
+
+        .process-detail-panel {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        /* Mobile Accordions */
+        .mobile-process-item {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-process-item.is-open {
+            border-color: #0000FF;
+            background-color: rgba(0, 0, 255, 0.04);
+        }
+        .mobile-process-body {
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
 
         .sports-item {
@@ -464,54 +499,308 @@
                 </div>
             </section>
 
-            <!-- SEÇÃO PROCESSO -->
+            <!-- SEÇÃO PROCESSO (INTERATIVO & EDITORIAL) -->
             <section id="processo" class="py-section px-6 md:px-12 max-w-[1400px] mx-auto">
-                <div class="mb-20 reveal">
-                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">MÉTODO</span>
+                <div class="mb-16 md:mb-20 reveal">
+                    <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-4 block">MÉTODO & ESTRATÉGIA</span>
                     <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-4 text-white">
                         MEU PROCESSO
                     </h2>
-                    <p class="font-serif italic text-xl text-neutral-300">
+                    <p class="font-serif italic text-xl md:text-2xl text-neutral-300">
                         O projeto começa muito antes de abrir qualquer ferramenta de design.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 reveal reveal-delay-2">
-                    <div class="process-card cursor-pointer group" tabindex="0">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">01</span>
-                            <i data-lucide="search" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
-                        </div>
-                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">ENTENDER</h3>
-                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Diagnóstico profundo do negócio, mercado, público e o verdadeiro problema a ser resolvido.</p>
+                <!-- DESKTOP INTERACTIVE MODULES & SPOTLIGHT PANEL -->
+                <div class="hidden md:block reveal reveal-delay-1">
+                    <!-- 4 Horizontal Stage Modules -->
+                    <div class="grid grid-cols-4 gap-4 lg:gap-6 process-module-grid mb-8" role="tablist" aria-label="Etapas do Processo Estratégico">
+                        
+                        <!-- Módulo 01 -->
+                        <button type="button" 
+                                role="tab" 
+                                aria-selected="true" 
+                                aria-controls="process-desktop-detail"
+                                data-step="01" 
+                                onclick="selectProcessStep('01')" 
+                                class="process-tab-btn is-active p-6 rounded-[2px] text-left cursor-pointer group focus-visible:outline-none flex flex-col justify-between min-h-[190px]">
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="step-num text-xs font-bold text-[#0000FF] tracking-widest transition-colors">01</span>
+                                    <i data-lucide="search" class="step-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                                </div>
+                                <h3 class="step-title text-xl font-bold text-white tracking-tight mb-2 transition-colors">ENTENDER</h3>
+                                <p class="step-desc text-xs text-neutral-400 font-light leading-relaxed transition-colors">Diagnóstico do negócio, público e definição do problema real.</p>
+                            </div>
+                            <div class="pt-4 mt-2 border-t border-white/[0.06] flex items-center justify-between">
+                                <span class="step-action text-[10px] uppercase font-bold tracking-wider text-neutral-400 transition-colors">VER COMO FUNCIONA</span>
+                                <i data-lucide="arrow-right" class="step-action w-3.5 h-3.5 text-neutral-400 transition-colors"></i>
+                            </div>
+                        </button>
+
+                        <!-- Módulo 02 -->
+                        <button type="button" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="process-desktop-detail"
+                                data-step="02" 
+                                onclick="selectProcessStep('02')" 
+                                class="process-tab-btn p-6 rounded-[2px] text-left cursor-pointer group focus-visible:outline-none flex flex-col justify-between min-h-[190px]">
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="step-num text-xs font-bold text-[#0000FF] tracking-widest transition-colors">02</span>
+                                    <i data-lucide="compass" class="step-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                                </div>
+                                <h3 class="step-title text-xl font-bold text-white tracking-tight mb-2 transition-colors">DIRECIONAR</h3>
+                                <p class="step-desc text-xs text-neutral-400 font-light leading-relaxed transition-colors">Conceito, posicionamento e tom de voz visual estratégico.</p>
+                            </div>
+                            <div class="pt-4 mt-2 border-t border-white/[0.06] flex items-center justify-between">
+                                <span class="step-action text-[10px] uppercase font-bold tracking-wider text-neutral-400 transition-colors">VER COMO FUNCIONA</span>
+                                <i data-lucide="arrow-right" class="step-action w-3.5 h-3.5 text-neutral-400 transition-colors"></i>
+                            </div>
+                        </button>
+
+                        <!-- Módulo 03 -->
+                        <button type="button" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="process-desktop-detail"
+                                data-step="03" 
+                                onclick="selectProcessStep('03')" 
+                                class="process-tab-btn p-6 rounded-[2px] text-left cursor-pointer group focus-visible:outline-none flex flex-col justify-between min-h-[190px]">
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="step-num text-xs font-bold text-[#0000FF] tracking-widest transition-colors">03</span>
+                                    <i data-lucide="pen-tool" class="step-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                                </div>
+                                <h3 class="step-title text-xl font-bold text-white tracking-tight mb-2 transition-colors">CONSTRUIR</h3>
+                                <p class="step-desc text-xs text-neutral-400 font-light leading-relaxed transition-colors">Criação da identidade visual, elementos e sistema gráfico.</p>
+                            </div>
+                            <div class="pt-4 mt-2 border-t border-white/[0.06] flex items-center justify-between">
+                                <span class="step-action text-[10px] uppercase font-bold tracking-wider text-neutral-400 transition-colors">VER COMO FUNCIONA</span>
+                                <i data-lucide="arrow-right" class="step-action w-3.5 h-3.5 text-neutral-400 transition-colors"></i>
+                            </div>
+                        </button>
+
+                        <!-- Módulo 04 -->
+                        <button type="button" 
+                                role="tab" 
+                                aria-selected="false" 
+                                aria-controls="process-desktop-detail"
+                                data-step="04" 
+                                onclick="selectProcessStep('04')" 
+                                class="process-tab-btn p-6 rounded-[2px] text-left cursor-pointer group focus-visible:outline-none flex flex-col justify-between min-h-[190px]">
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="step-num text-xs font-bold text-[#0000FF] tracking-widest transition-colors">04</span>
+                                    <i data-lucide="layers" class="step-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                                </div>
+                                <h3 class="step-title text-xl font-bold text-white tracking-tight mb-2 transition-colors">APLICAR</h3>
+                                <p class="step-desc text-xs text-neutral-400 font-light leading-relaxed transition-colors">Desdobramento para pontos de contato reais da marca.</p>
+                            </div>
+                            <div class="pt-4 mt-2 border-t border-white/[0.06] flex items-center justify-between">
+                                <span class="step-action text-[10px] uppercase font-bold tracking-wider text-neutral-400 transition-colors">VER COMO FUNCIONA</span>
+                                <i data-lucide="arrow-right" class="step-action w-3.5 h-3.5 text-neutral-400 transition-colors"></i>
+                            </div>
+                        </button>
                     </div>
+
+                    <!-- Spotlight Detail Card Desktop -->
+                    <div id="process-desktop-detail" class="process-detail-panel bg-neutral-950 border border-white/[0.08] p-8 md:p-12 rounded-[2px] shadow-2xl relative overflow-hidden" role="tabpanel">
+                        <div class="grid grid-cols-12 gap-8 items-start">
+                            
+                            <!-- Coluna Esquerda: Identificação e Indicadores -->
+                            <div class="col-span-4 border-r border-white/[0.06] pr-8 flex flex-col justify-between h-full">
+                                <div>
+                                    <div class="flex items-baseline gap-4 mb-2">
+                                        <span id="detail-step-number" class="text-6xl font-bold tracking-tighter text-[#0000FF]">01</span>
+                                        <span class="text-xs uppercase tracking-[0.2em] text-neutral-500 font-bold">ETAPA METODOLÓGICA</span>
+                                    </div>
+                                    <h3 id="detail-step-title" class="text-3xl font-bold text-white tracking-tight mb-6">ENTENDER</h3>
+                                    
+                                    <div class="mb-8">
+                                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-3">INDICADORES CHAVE</span>
+                                        <div id="detail-step-badges" class="flex flex-wrap gap-2">
+                                            <span class="px-3 py-1.5 rounded-[2px] bg-neutral-900 border border-white/10 text-[10px] uppercase font-bold tracking-wider text-neutral-300">BRIEFING</span>
+                                            <span class="px-3 py-1.5 rounded-[2px] bg-neutral-900 border border-white/10 text-[10px] uppercase font-bold tracking-wider text-neutral-300">IMERSÃO</span>
+                                            <span class="px-3 py-1.5 rounded-[2px] bg-neutral-900 border border-white/10 text-[10px] uppercase font-bold tracking-wider text-neutral-300">DIAGNÓSTICO</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="pt-6 border-t border-white/[0.06] flex items-center gap-3">
+                                    <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-semibold">Navegar etapas:</span>
+                                    <div class="flex gap-2">
+                                        <button type="button" onclick="selectProcessStep('01')" class="w-7 h-7 rounded-[2px] text-xs font-bold bg-neutral-900 text-white hover:bg-[#0000FF] transition-colors">01</button>
+                                        <button type="button" onclick="selectProcessStep('02')" class="w-7 h-7 rounded-[2px] text-xs font-bold bg-neutral-900 text-white hover:bg-[#0000FF] transition-colors">02</button>
+                                        <button type="button" onclick="selectProcessStep('03')" class="w-7 h-7 rounded-[2px] text-xs font-bold bg-neutral-900 text-white hover:bg-[#0000FF] transition-colors">03</button>
+                                        <button type="button" onclick="selectProcessStep('04')" class="w-7 h-7 rounded-[2px] text-xs font-bold bg-neutral-900 text-white hover:bg-[#0000FF] transition-colors">04</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Coluna Direita: Conteúdo Editorial e Entrega Final -->
+                            <div class="col-span-8 pl-4 flex flex-col justify-between">
+                                <div class="mb-8">
+                                    <p id="detail-step-quote" class="font-serif italic text-2xl text-neutral-200 leading-snug mb-6">
+                                        “Antes de abrir qualquer ferramenta, eu procuro entender o que existe por trás da marca.”
+                                    </p>
+                                    <p id="detail-step-p1" class="text-base text-neutral-400 font-light leading-relaxed">
+                                        Negócio, público, momento, objetivos e principalmente: o que precisa mudar?
+                                    </p>
+                                </div>
+
+                                <div class="bg-black/60 border border-white/10 p-6 rounded-[2px] border-l-4 border-l-[#0000FF]">
+                                    <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-1">ENTREGA DESTA ETAPA</span>
+                                    <p id="detail-step-deliverable" class="text-sm md:text-base text-white font-medium">
+                                        No final dessa etapa: existe um problema mais claro para trabalhar.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MOBILE TOUCH ACCORDIONS -->
+                <div class="block md:hidden flex flex-col gap-4 reveal reveal-delay-1">
                     
-                    <div class="process-card cursor-pointer group" tabindex="0">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">02</span>
-                            <i data-lucide="compass" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                    <!-- Mobile 01 -->
+                    <div class="mobile-process-item is-open rounded-[2px] border border-white/10 bg-neutral-950 overflow-hidden" data-step="01">
+                        <button type="button" onclick="toggleMobileProcess('01')" class="w-full p-6 text-left flex items-center justify-between focus-visible:outline-none">
+                            <div class="flex items-center gap-4">
+                                <span class="mobile-step-num text-sm font-bold text-[#0000FF] tracking-widest">01</span>
+                                <h3 class="text-lg font-bold text-white tracking-tight">ENTENDER</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="mobile-chevron w-5 h-5 text-neutral-400 transition-transform duration-300" style="transform: rotate(180deg);"></i>
+                        </button>
+                        <div class="mobile-process-body px-6 pb-6 overflow-hidden" style="max-height: 500px; opacity: 1;">
+                            <div class="pt-2 border-t border-white/[0.08]">
+                                <div class="flex flex-wrap gap-2 my-4">
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">BRIEFING</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">IMERSÃO</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">DIAGNÓSTICO</span>
+                                </div>
+                                <p class="font-serif italic text-base text-neutral-200 leading-snug mb-3">
+                                    “Antes de abrir qualquer ferramenta, eu procuro entender o que existe por trás da marca.”
+                                </p>
+                                <p class="text-xs text-neutral-400 font-light leading-relaxed mb-4">
+                                    Negócio, público, momento, objetivos e principalmente: o que precisa mudar?
+                                </p>
+                                <div class="bg-black/60 border-l-2 border-l-[#0000FF] border border-white/10 p-3.5 rounded-[2px]">
+                                    <p class="text-xs text-white font-medium">
+                                        No final dessa etapa: existe um problema mais claro para trabalhar.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">DIRECIONAR</h3>
-                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Definição de conceito, posicionamento, referências estratégicas e tom de voz visual.</p>
                     </div>
 
-                    <div class="process-card cursor-pointer group" tabindex="0">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">03</span>
-                            <i data-lucide="pen-tool" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                    <!-- Mobile 02 -->
+                    <div class="mobile-process-item rounded-[2px] border border-white/10 bg-neutral-950 overflow-hidden" data-step="02">
+                        <button type="button" onclick="toggleMobileProcess('02')" class="w-full p-6 text-left flex items-center justify-between focus-visible:outline-none">
+                            <div class="flex items-center gap-4">
+                                <span class="mobile-step-num text-sm font-bold text-[#0000FF] tracking-widest">02</span>
+                                <h3 class="text-lg font-bold text-white tracking-tight">DIRECIONAR</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="mobile-chevron w-5 h-5 text-neutral-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="mobile-process-body px-6 pb-0 overflow-hidden" style="max-height: 0px; opacity: 0;">
+                            <div class="pt-2 border-t border-white/[0.08] pb-6">
+                                <div class="flex flex-wrap gap-2 my-4">
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">CONCEITO</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">POSICIONAMENTO</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">DIREÇÃO VISUAL</span>
+                                </div>
+                                <p class="font-serif italic text-base text-neutral-200 leading-snug mb-3">
+                                    “Transformo essas informações em uma direção.”
+                                </p>
+                                <p class="text-xs text-neutral-400 font-light leading-relaxed mb-4">
+                                    Defino conceito, posicionamento, referências, linguagem e caminhos visuais que façam sentido para aquela marca.
+                                </p>
+                                <div class="bg-black/60 border-l-2 border-l-[#0000FF] border border-white/10 p-3.5 rounded-[2px]">
+                                    <p class="text-xs text-white font-medium">
+                                        No final dessa etapa: sabemos para onde o projeto está indo.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">CONSTRUIR</h3>
-                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Criação do sistema de identidade visual, tipografia, cores, símbolos e diretrizes de aplicação.</p>
                     </div>
 
-                    <div class="process-card cursor-pointer group" tabindex="0">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="process-number text-xs font-bold text-neutral-500 tracking-widest transition-colors">04</span>
-                            <i data-lucide="layers" class="process-icon w-4 h-4 text-neutral-500 transition-colors"></i>
+                    <!-- Mobile 03 -->
+                    <div class="mobile-process-item rounded-[2px] border border-white/10 bg-neutral-950 overflow-hidden" data-step="03">
+                        <button type="button" onclick="toggleMobileProcess('03')" class="w-full p-6 text-left flex items-center justify-between focus-visible:outline-none">
+                            <div class="flex items-center gap-4">
+                                <span class="mobile-step-num text-sm font-bold text-[#0000FF] tracking-widest">03</span>
+                                <h3 class="text-lg font-bold text-white tracking-tight">CONSTRUIR</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="mobile-chevron w-5 h-5 text-neutral-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="mobile-process-body px-6 pb-0 overflow-hidden" style="max-height: 0px; opacity: 0;">
+                            <div class="pt-2 border-t border-white/[0.08] pb-6">
+                                <div class="flex flex-wrap gap-2 my-4">
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">IDENTIDADE</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">SISTEMA VISUAL</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">APLICAÇÕES</span>
+                                </div>
+                                <p class="font-serif italic text-base text-neutral-200 leading-snug mb-3">
+                                    “É aqui que a estratégia começa a ganhar forma.”
+                                </p>
+                                <p class="text-xs text-neutral-400 font-light leading-relaxed mb-4">
+                                    Construo identidade, elementos visuais, layouts e sistemas que traduzem a direção definida anteriormente.
+                                </p>
+                                <div class="bg-black/60 border-l-2 border-l-[#0000FF] border border-white/10 p-3.5 rounded-[2px]">
+                                    <p class="text-xs text-white font-medium">
+                                        No final dessa etapa: a ideia deixa de ser abstrata e começa a existir visualmente.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white tracking-wide transition-colors">APLICAR</h3>
-                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed transition-colors">Desdobramento da marca para pontos de contato reais — digital, editorial, web e presença consistente.</p>
                     </div>
+
+                    <!-- Mobile 04 -->
+                    <div class="mobile-process-item rounded-[2px] border border-white/10 bg-neutral-950 overflow-hidden" data-step="04">
+                        <button type="button" onclick="toggleMobileProcess('04')" class="w-full p-6 text-left flex items-center justify-between focus-visible:outline-none">
+                            <div class="flex items-center gap-4">
+                                <span class="mobile-step-num text-sm font-bold text-[#0000FF] tracking-widest">04</span>
+                                <h3 class="text-lg font-bold text-white tracking-tight">APLICAR</h3>
+                            </div>
+                            <i data-lucide="chevron-down" class="mobile-chevron w-5 h-5 text-neutral-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="mobile-process-body px-6 pb-0 overflow-hidden" style="max-height: 0px; opacity: 0;">
+                            <div class="pt-2 border-t border-white/[0.08] pb-6">
+                                <div class="flex flex-wrap gap-2 my-4">
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">SOCIAL</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">WEB</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">CAMPANHAS</span>
+                                    <span class="px-2 py-1 rounded-[2px] bg-neutral-900 border border-white/10 text-[9px] uppercase font-bold tracking-wider text-neutral-300">COMUNICAÇÃO</span>
+                                </div>
+                                <p class="font-serif italic text-base text-neutral-200 leading-snug mb-3">
+                                    “Uma identidade não serve para ficar parada em uma apresentação.”
+                                </p>
+                                <p class="text-xs text-neutral-400 font-light leading-relaxed mb-4">
+                                    Ela precisa funcionar no Instagram, no site, em campanhas, materiais e nos diferentes pontos de contato da marca.
+                                </p>
+                                <div class="bg-black/60 border-l-2 border-l-[#0000FF] border border-white/10 p-3.5 rounded-[2px]">
+                                    <p class="text-xs text-white font-medium">
+                                        No final dessa etapa: a marca está pronta para ser usada de verdade.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- FECHAMENTO DA SEÇÃO DE PROCESSO -->
+                <div class="mt-16 md:mt-24 p-8 md:p-12 rounded-[2px] bg-neutral-950 border border-white/[0.08] text-center reveal reveal-delay-2">
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-[#0000FF] font-bold block mb-4">MÉTODO EM AÇÃO</span>
+                    <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-white leading-snug max-w-4xl mx-auto mb-3">
+                        “Entender antes. Direcionar depois. Construir com propósito. Aplicar no mundo real.”
+                    </p>
+                    <p class="text-xs sm:text-sm text-neutral-400 font-light max-w-xl mx-auto">
+                        Uma metodologia orientada à clareza estratégica e consistência visual em cada decisão do projeto.
+                    </p>
                 </div>
             </section>
 
@@ -1383,6 +1672,121 @@
                 lightboxImg.src = ''; 
                 if (lastFocusedElement) lastFocusedElement.focus();
             }, 300);
+        }
+
+        // ==========================================
+        // SEÇÃO PROCESSO: LÓGICA INTERATIVA
+        // ==========================================
+        const processData = {
+            '01': {
+                number: '01',
+                title: 'ENTENDER',
+                indicators: ['BRIEFING', 'IMERSÃO', 'DIAGNÓSTICO'],
+                quote: '“Antes de abrir qualquer ferramenta, eu procuro entender o que existe por trás da marca.”',
+                p1: 'Negócio, público, momento, objetivos e principalmente: o que precisa mudar?',
+                deliverable: 'No final dessa etapa: existe um problema mais claro para trabalhar.'
+            },
+            '02': {
+                number: '02',
+                title: 'DIRECIONAR',
+                indicators: ['CONCEITO', 'POSICIONAMENTO', 'DIREÇÃO VISUAL'],
+                quote: '“Transformo essas informações em uma direção.”',
+                p1: 'Defino conceito, posicionamento, referências, linguagem e caminhos visuais que façam sentido para aquela marca.',
+                deliverable: 'No final dessa etapa: sabemos para onde o projeto está indo.'
+            },
+            '03': {
+                number: '03',
+                title: 'CONSTRUIR',
+                indicators: ['IDENTIDADE', 'SISTEMA VISUAL', 'APLICAÇÕES'],
+                quote: '“É aqui que a estratégia começa a ganhar forma.”',
+                p1: 'Construo identidade, elementos visuais, layouts e sistemas que traduzem a direção definida anteriormente.',
+                deliverable: 'No final dessa etapa: a ideia deixa de ser abstrata e começa a existir visualmente.'
+            },
+            '04': {
+                number: '04',
+                title: 'APLICAR',
+                indicators: ['SOCIAL', 'WEB', 'CAMPANHAS', 'COMUNICAÇÃO'],
+                quote: '“Uma identidade não serve para ficar parada em uma apresentação.”',
+                p1: 'Ela precisa funcionar no Instagram, no site, em campanhas, materiais e nos diferentes pontos de contato da marca.',
+                deliverable: 'No final dessa etapa: a marca está pronta para ser usada de verdade.'
+            }
+        };
+
+        function selectProcessStep(stepKey) {
+            const data = processData[stepKey];
+            if (!data) return;
+
+            document.querySelectorAll('.process-tab-btn').forEach(btn => {
+                const isCurrent = btn.getAttribute('data-step') === stepKey;
+                btn.classList.toggle('is-active', isCurrent);
+                btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+            });
+
+            const detailContainer = document.getElementById('process-desktop-detail');
+            if (detailContainer) {
+                detailContainer.style.opacity = '0';
+                detailContainer.style.transform = 'translateY(6px)';
+                
+                setTimeout(() => {
+                    const numEl = document.getElementById('detail-step-number');
+                    const titleEl = document.getElementById('detail-step-title');
+                    const quoteEl = document.getElementById('detail-step-quote');
+                    const p1El = document.getElementById('detail-step-p1');
+                    const delivEl = document.getElementById('detail-step-deliverable');
+                    const badgesContainer = document.getElementById('detail-step-badges');
+
+                    if (numEl) numEl.innerText = data.number;
+                    if (titleEl) titleEl.innerText = data.title;
+                    if (quoteEl) quoteEl.innerText = data.quote;
+                    if (p1El) p1El.innerText = data.p1;
+                    if (delivEl) delivEl.innerText = data.deliverable;
+                    
+                    if (badgesContainer) {
+                        badgesContainer.innerHTML = data.indicators.map(ind => 
+                            `<span class="px-3 py-1.5 rounded-[2px] bg-neutral-900 border border-white/10 text-[10px] uppercase font-bold tracking-wider text-neutral-300">${ind}</span>`
+                        ).join('');
+                    }
+
+                    detailContainer.style.opacity = '1';
+                    detailContainer.style.transform = 'translateY(0)';
+                    if (window.lucide) lucide.createIcons();
+                }, 150);
+            }
+        }
+
+        function toggleMobileProcess(stepKey) {
+            const items = document.querySelectorAll('.mobile-process-item');
+            items.forEach(item => {
+                const isTarget = item.getAttribute('data-step') === stepKey;
+                const body = item.querySelector('.mobile-process-body');
+                const chevron = item.querySelector('.mobile-chevron');
+                
+                if (isTarget) {
+                    const isOpen = item.classList.contains('is-open');
+                    if (isOpen) {
+                        item.classList.remove('is-open');
+                        if (body) {
+                            body.style.maxHeight = '0px';
+                            body.style.opacity = '0';
+                        }
+                        if (chevron) chevron.style.transform = 'rotate(0deg)';
+                    } else {
+                        item.classList.add('is-open');
+                        if (body) {
+                            body.style.maxHeight = body.scrollHeight + 'px';
+                            body.style.opacity = '1';
+                        }
+                        if (chevron) chevron.style.transform = 'rotate(180deg)';
+                    }
+                } else {
+                    item.classList.remove('is-open');
+                    if (body) {
+                        body.style.maxHeight = '0px';
+                        body.style.opacity = '0';
+                    }
+                    if (chevron) chevron.style.transform = 'rotate(0deg)';
+                }
+            });
         }
     </script>
 </body>
