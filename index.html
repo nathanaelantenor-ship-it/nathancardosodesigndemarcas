@@ -2189,10 +2189,7 @@
                                  decoding="async" 
                                  class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
                             
-                            <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2 z-10">
-                                <span class="px-2.5 py-1 rounded-[2px] bg-black/90 border border-white/20 text-[9px] font-bold tracking-widest uppercase text-white">
-                                    ${project.badge}
-                                </span>
+                            <div class="absolute top-2.5 right-2.5 z-10">
                                 <span class="px-2.5 py-1 rounded-[2px] bg-[#0000FF] text-white text-[9px] font-bold uppercase tracking-wider shadow">
                                     #0${idx + 1}
                                 </span>
@@ -2279,8 +2276,25 @@
 
         function scrollSocialRail(direction) {
             const track = document.getElementById('social-rail-track');
-            if (track) {
-                track.scrollBy({ left: direction * 360, behavior: 'smooth' });
+            if (!track) return;
+            
+            const scrollStep = 360;
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            
+            if (direction > 0) {
+                // Ao rolar para frente e alcançar o final, retorna suavemente ao início
+                if (track.scrollLeft >= maxScroll - 30) {
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                }
+            } else {
+                // Ao rolar para trás e alcançar o início, vai suavemente para o final
+                if (track.scrollLeft <= 30) {
+                    track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+                }
             }
         }
 
