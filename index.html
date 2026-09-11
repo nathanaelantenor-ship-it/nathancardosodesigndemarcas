@@ -170,6 +170,19 @@
             color: #ffffff !important;
         }
 
+        #case-modal .idv-feature-card {
+            background-color: #ffffff !important;
+            border: 1px solid #e5e5e5 !important;
+        }
+
+        #case-modal .idv-feature-card span {
+            color: #0000FF !important;
+        }
+
+        #case-modal .idv-feature-card p {
+            color: #1a1a1a !important;
+        }
+
         /* Acessibilidade - Foco Visível */
         *:focus-visible {
             outline: 2px solid #0000FF;
@@ -1962,18 +1975,18 @@
             lastFocusedElement = document.activeElement;
             modalTitle.innerText = data.name;
             let html = `
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 border-b border-neutral-800/80 pb-12">
-                    <div class="bg-white p-6 rounded-[2px] border border-neutral-800/80 shadow-sm">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-2">01 • DESAFIO</span>
-                        <p class="text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">${data.problem}</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16 border-b border-white/15 pb-12">
+                    <div class="idv-feature-card p-6 sm:p-7 rounded-[4px] shadow-xl flex flex-col justify-between" style="background-color: #ffffff !important; border: 1px solid #e5e5e5 !important;">
+                        <span class="text-[11px] uppercase tracking-[0.2em] font-bold block mb-3" style="color: #0000FF !important;">01 • DESAFIO</span>
+                        <p class="text-xs sm:text-sm font-normal leading-relaxed" style="color: #1a1a1a !important;">${data.problem}</p>
                     </div>
-                    <div class="bg-white p-6 rounded-[2px] border border-neutral-800/80 shadow-sm">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-2">02 • DIREÇÃO ESTRATÉGICA</span>
-                        <p class="text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">${data.direction}</p>
+                    <div class="idv-feature-card p-6 sm:p-7 rounded-[4px] shadow-xl flex flex-col justify-between" style="background-color: #ffffff !important; border: 1px solid #e5e5e5 !important;">
+                        <span class="text-[11px] uppercase tracking-[0.2em] font-bold block mb-3" style="color: #0000FF !important;">02 • DIREÇÃO ESTRATÉGICA</span>
+                        <p class="text-xs sm:text-sm font-normal leading-relaxed" style="color: #1a1a1a !important;">${data.direction}</p>
                     </div>
-                    <div class="bg-white p-6 rounded-[2px] border border-neutral-800/80 shadow-sm">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-[#0000FF] font-bold block mb-2">03 • SOLUÇÃO VISUAL</span>
-                        <p class="text-xs sm:text-sm font-light text-neutral-300 leading-relaxed">${data.solution}</p>
+                    <div class="idv-feature-card p-6 sm:p-7 rounded-[4px] shadow-xl flex flex-col justify-between" style="background-color: #ffffff !important; border: 1px solid #e5e5e5 !important;">
+                        <span class="text-[11px] uppercase tracking-[0.2em] font-bold block mb-3" style="color: #0000FF !important;">03 • SOLUÇÃO VISUAL</span>
+                        <p class="text-xs sm:text-sm font-normal leading-relaxed" style="color: #1a1a1a !important;">${data.solution}</p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-8 md:gap-10 mb-24">
