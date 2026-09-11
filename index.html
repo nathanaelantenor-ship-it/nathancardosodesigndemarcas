@@ -126,20 +126,23 @@
         }
 
         /* ======================================================= */
-        /* SEÇÃO & MODAL SOCIAL MEDIA: ESTRUTURA 100% PRETA, CAIXAS AZUIS E TEXTOS BRANCOS */
+        /* SEÇÃO & MODAL SOCIAL MEDIA: FUNDO CINZA BEM ESCURO, CAIXAS AZUIS E TEXTO BRANCO */
         /* ======================================================= */
-        #social-media,
-        #social-preview-modal,
-        #case-modal,
-        #image-lightbox {
+        #social-media {
             background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+
+        #social-preview-modal,
+        #social-modal-body {
+            background-color: #121214 !important;
             color: #ffffff !important;
         }
 
         #social-preview-modal header,
         #social-preview-modal footer {
-            background-color: #000000 !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
+            background-color: #0c0c0e !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
         }
 
         #social-preview-modal h1,
@@ -148,7 +151,7 @@
         #social-preview-modal h4,
         #social-preview-modal h5,
         #social-preview-modal p,
-        #social-preview-modal span,
+        #social-preview-modal span:not([class*="text-[#0000FF]"]):not([class*="text-emerald"]):not([class*="text-blue"]),
         #social-preview-modal blockquote {
             color: #ffffff !important;
         }
@@ -157,7 +160,13 @@
         #social-media h3,
         #social-media h4,
         #social-media p,
-        #social-media span:not([class*="text-[#0000FF]"]):not([class*="text-emerald"]) {
+        #social-media span:not([class*="text-[#0000FF]"]):not([class*="text-emerald"]):not([class*="text-blue"]) {
+            color: #ffffff !important;
+        }
+
+        #case-modal,
+        #image-lightbox {
+            background-color: #08080a !important;
             color: #ffffff !important;
         }
 
@@ -1147,7 +1156,6 @@
                                     <span id="hero-match" class="px-2 py-0.5 rounded-[2px] bg-emerald-950/90 border border-emerald-500/50 text-emerald-400 text-[10px] font-bold tracking-wider">
                                         98% MATCH ESTRATÉGICO
                                     </span>
-                                    <span id="hero-year" class="text-xs font-mono text-white">2024</span>
                                     <span id="hero-specs" class="px-2 py-0.5 rounded-[2px] bg-[#141414] border border-white/20 text-[9px] font-mono text-white">4K ULTRA HD</span>
                                 </div>
 
@@ -1739,10 +1747,10 @@
     </div>
 
     <!-- Modal Preview Completo Social Media (Netflix Style Drawer) -->
-    <div id="social-preview-modal" class="fixed inset-0 z-[105] bg-black overflow-y-auto opacity-0 invisible transition-all duration-300 flex flex-col" role="dialog" aria-modal="true" aria-labelledby="social-modal-title">
+    <div id="social-preview-modal" class="fixed inset-0 z-[105] overflow-y-auto opacity-0 invisible transition-all duration-300 flex flex-col" style="background-color: #121214;" role="dialog" aria-modal="true" aria-labelledby="social-modal-title">
         
         <!-- Top Bar Sticky -->
-        <header class="sticky top-0 z-50 bg-black border-b border-white/20 px-6 md:px-12 py-4 flex items-center justify-between">
+        <header class="sticky top-0 z-50 border-b border-white/10 px-6 md:px-12 py-4 flex items-center justify-between" style="background-color: #0c0c0e;">
             <div class="flex items-center gap-3">
                 <span id="social-modal-badge" class="px-3 py-1 rounded-[2px] bg-[#0000FF] text-white text-[10px] font-bold uppercase tracking-widest shadow">CATEGORIA</span>
                 <h3 id="social-modal-title" class="text-base md:text-xl font-bold text-white tracking-tight">Nome do Projeto</h3>
@@ -1755,12 +1763,12 @@
         </header>
 
         <!-- Modal Body Content -->
-        <main id="social-modal-body" class="flex-1 max-w-[1400px] w-full mx-auto px-6 md:px-12 py-10 md:py-16 text-white bg-black">
+        <main id="social-modal-body" class="flex-1 max-w-[1400px] w-full mx-auto px-6 md:px-12 py-10 md:py-16 text-white" style="background-color: #121214;">
             <!-- Renderizado via JS -->
         </main>
 
         <!-- Bottom Return Button -->
-        <footer class="bg-black border-t border-white/20 px-6 py-6 flex items-center justify-center">
+        <footer class="border-t border-white/10 px-6 py-6 flex items-center justify-center" style="background-color: #0c0c0e;">
             <button type="button" onclick="closeSocialModal()" class="inline-flex items-center gap-2.5 px-8 py-4 rounded-[2px] bg-[#0000FF] hover:bg-white hover:text-black text-white text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-2xl min-h-[48px]">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> FECHAR E VOLTAR AO SITE
             </button>
@@ -2196,7 +2204,6 @@
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-1.5">
                                     <span class="text-[10px] uppercase font-bold tracking-widest text-[#0000FF]">${project.category}</span>
-                                    <span class="text-[10px] text-white/80 font-mono font-bold">${project.year}</span>
                                 </div>
                                 
                                 <h4 class="text-base md:text-lg font-bold text-white group-hover:text-[#0000FF] transition-colors leading-snug tracking-tight mb-2">
@@ -2237,7 +2244,6 @@
             const heroBadge = document.getElementById('hero-badge');
             const heroCategory = document.getElementById('hero-category');
             const heroSynopsis = document.getElementById('hero-synopsis');
-            const heroYear = document.getElementById('hero-year');
 
             if (heroBg) {
                 heroBg.style.opacity = '0.3';
@@ -2251,7 +2257,6 @@
             if (heroBadge) heroBadge.innerText = project.badge;
             if (heroCategory) heroCategory.innerText = project.category;
             if (heroSynopsis) heroSynopsis.innerText = project.synopsisFull || project.synopsisShort;
-            if (heroYear) heroYear.innerText = project.year || '2024';
 
             // Atualiza anel ativo nos cards
             document.querySelectorAll('.social-rail-card').forEach(card => {
@@ -2300,14 +2305,13 @@
 
             let html = `
                 <!-- HERO DO PROJETO COM SINOPSE AZUL E CAPA EM DESTAQUE -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pb-12 mb-16 border-b border-white/20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start pb-12 mb-16 border-b border-white/15">
                     
                     <div class="lg:col-span-6 flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-center gap-2 mb-4">
                                 <span class="px-3 py-1 rounded-[2px] bg-[#0000FF] text-white text-[10px] font-bold uppercase tracking-widest shadow">${project.badge}</span>
-                                <span class="px-3 py-1 rounded-[2px] bg-[#141414] border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest">${project.category}</span>
-                                <span class="px-3 py-1 rounded-[2px] bg-[#141414] border border-white/20 text-white text-[10px] font-mono font-bold tracking-widest">${project.year}</span>
+                                <span class="px-3 py-1 rounded-[2px] bg-[#222226] border border-white/15 text-white text-[10px] font-bold uppercase tracking-widest">${project.category}</span>
                             </div>
 
                             <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
@@ -2315,7 +2319,7 @@
                             </h2>
 
                             <!-- CAIXA AZUL: SINOPSE DO PROJETO -->
-                            <div class="bg-[#0000FF] text-white border border-blue-400/40 p-6 sm:p-8 rounded-[3px] shadow-[0_12px_35px_rgba(0,0,255,0.35)] mb-8">
+                            <div class="bg-[#0000FF] text-white border border-blue-400/40 p-6 sm:p-8 rounded-[4px] shadow-[0_12px_35px_rgba(0,0,255,0.35)] mb-8">
                                 <span class="text-[11px] uppercase font-black tracking-[0.25em] text-white block mb-2">SINOPSE DO PROJETO & DIREÇÃO ESTRATÉGICA</span>
                                 <p class="text-sm md:text-base font-normal text-white leading-relaxed">
                                     ${project.synopsisFull}
@@ -2324,15 +2328,15 @@
 
                             <!-- CAIXAS AZUIS: MÉTRICAS DO PROJETO -->
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-                                <div class="bg-[#0000FF] text-white border border-blue-400/40 p-4 rounded-[3px] shadow-lg">
+                                <div class="bg-[#0000FF] text-white border border-blue-400/40 p-4 rounded-[4px] shadow-lg">
                                     <p class="text-[10px] text-white/90 uppercase font-bold tracking-wider">Carrosséis</p>
                                     <p class="text-2xl font-black text-white mt-1">${project.carousels ? project.carousels.length : 0}</p>
                                 </div>
-                                <div class="bg-[#0000FF] text-white border border-blue-400/40 p-4 rounded-[3px] shadow-lg">
+                                <div class="bg-[#0000FF] text-white border border-blue-400/40 p-4 rounded-[4px] shadow-lg">
                                     <p class="text-[10px] text-white/90 uppercase font-bold tracking-wider">Total de Lâminas</p>
                                     <p class="text-2xl font-black text-white mt-1">${project.carousels ? project.carousels.reduce((acc, c) => acc + c.slides.length, 0) : 0}</p>
                                 </div>
-                                <div class="bg-[#0000FF] text-white border border-blue-400/40 p-4 rounded-[3px] shadow-lg col-span-2 sm:col-span-1">
+                                <div class="bg-[#0000FF] text-white border border-blue-400/40 p-4 rounded-[4px] shadow-lg col-span-2 sm:col-span-1">
                                     <p class="text-[10px] text-white/90 uppercase font-bold tracking-wider">Posts Estáticos</p>
                                     <p class="text-2xl font-black text-white mt-1">${project.staticPosts ? project.staticPosts.length : 0}</p>
                                 </div>
@@ -2347,7 +2351,7 @@
                     </div>
 
                     <!-- CAPA DO PROJETO COM CABEÇALHO AZUL -->
-                    <div class="lg:col-span-6 bg-[#0c0c0c] border-2 border-[#0000FF] rounded-[3px] overflow-hidden group cursor-pointer shadow-2xl" onclick="openLightbox('${project.cover}', '${project.title}')">
+                    <div class="lg:col-span-6 bg-[#18181c] border-2 border-[#0000FF] rounded-[4px] overflow-hidden group cursor-pointer shadow-2xl" onclick="openLightbox('${project.cover}', '${project.title}')">
                         <div class="p-3.5 bg-[#0000FF] text-white flex items-center justify-between text-xs font-bold">
                             <span class="flex items-center gap-2 uppercase text-[11px] tracking-wider text-white">
                                 <i data-lucide="image" class="w-4 h-4 text-white"></i> CAPA DO PROJETO
@@ -2356,7 +2360,7 @@
                                 AMPLIAR <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
                             </span>
                         </div>
-                        <div class="w-full aspect-[4/3] bg-black flex items-center justify-center p-3">
+                        <div class="w-full aspect-[4/3] bg-[#0a0a0c] flex items-center justify-center p-3">
                             <img src="${project.cover}" alt="Capa ${project.title}" class="w-full h-full object-contain mx-auto block group-hover:scale-[1.02] transition-transform duration-500">
                         </div>
                     </div>
@@ -2367,7 +2371,7 @@
             if (project.carousels && project.carousels.length > 0) {
                 html += `
                     <div class="mb-20">
-                        <div class="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-white/20 pb-4">
+                        <div class="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-white/15 pb-4">
                             <div>
                                 <span class="text-[10px] uppercase font-black tracking-[0.25em] text-[#0000FF] block mb-1">FORMATO CARROSSEL</span>
                                 <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight">CARROSSÉIS INTERATIVOS</h3>
@@ -2383,8 +2387,8 @@
                     carouselStates[cId] = { current: 0, total: car.slides.length };
 
                     html += `
-                        <div class="bg-[#0c0c0c] border border-white/20 rounded-[3px] p-6 md:p-8 shadow-2xl">
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-white/15">
+                        <div class="bg-[#18181c] border border-white/10 rounded-[4px] p-6 md:p-8 shadow-2xl">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
                                 <div>
                                     <h4 class="text-lg md:text-xl font-bold text-white tracking-tight">${car.title}</h4>
                                     <p class="text-xs text-white/85 font-normal mt-0.5">${car.subtitle}</p>
@@ -2396,10 +2400,10 @@
                                 </div>
                             </div>
 
-                            <div class="relative w-full max-w-2xl mx-auto overflow-hidden rounded-[2px] bg-black border border-white/20 shadow-2xl">
+                            <div class="relative w-full max-w-2xl mx-auto overflow-hidden rounded-[2px] bg-[#0a0a0c] border border-white/10 shadow-2xl">
                                 <div id="${cId}-track" class="flex transition-transform duration-300 ease-out" style="transform: translateX(0%);">
                                     ${car.slides.map((slide, sIdx) => `
-                                        <div class="w-full flex-shrink-0 relative group cursor-pointer aspect-square bg-black flex items-center justify-center p-2" onclick="openLightbox('${slide}', 'Lâmina ${sIdx + 1} de ${car.title}')">
+                                        <div class="w-full flex-shrink-0 relative group cursor-pointer aspect-square bg-[#0a0a0c] flex items-center justify-center p-2" onclick="openLightbox('${slide}', 'Lâmina ${sIdx + 1} de ${car.title}')">
                                             <img src="${slide}" alt="Lâmina ${sIdx + 1} de ${car.title}" loading="lazy" decoding="async" class="w-full h-full object-contain mx-auto block">
                                             <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <span class="px-3 py-1.5 bg-[#0000FF] text-white text-[10px] font-bold rounded-[2px] flex items-center gap-1 shadow-xl">
@@ -2437,7 +2441,7 @@
             if (project.staticPosts && project.staticPosts.length > 0) {
                 html += `
                     <div class="mb-20">
-                        <div class="mb-8 flex items-center justify-between border-b border-white/20 pb-4">
+                        <div class="mb-8 flex items-center justify-between border-b border-white/15 pb-4">
                             <div>
                                 <span class="text-[10px] uppercase font-black tracking-[0.25em] text-[#0000FF] block mb-1">BIBLIOTECA VISUAL</span>
                                 <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight">POSTS ESTÁTICOS & PEÇAS INDIVIDUAIS</h3>
@@ -2447,8 +2451,8 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                             ${project.staticPosts.map((post, pIdx) => `
-                                <div class="bg-[#0c0c0c] border border-white/20 rounded-[3px] overflow-hidden group cursor-pointer flex flex-col justify-between hover:border-[#0000FF] hover:shadow-[0_10px_35px_rgba(0,0,255,0.3)] transition-all duration-300" onclick="openLightbox('${post.src}', '${post.title}')">
-                                    <div class="w-full aspect-[4/5] bg-black overflow-hidden flex items-center justify-center p-2 relative">
+                                <div class="bg-[#18181c] border border-white/10 rounded-[4px] overflow-hidden group cursor-pointer flex flex-col justify-between hover:border-[#0000FF] hover:shadow-[0_10px_35px_rgba(0,0,255,0.3)] transition-all duration-300" onclick="openLightbox('${post.src}', '${post.title}')">
+                                    <div class="w-full aspect-[4/5] bg-[#0a0a0c] overflow-hidden flex items-center justify-center p-2 relative">
                                         <img src="${post.src}" alt="${post.title}" loading="lazy" decoding="async" class="w-full h-full object-contain mx-auto block group-hover:scale-105 transition-transform duration-500">
                                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                             <span class="px-3.5 py-2 rounded-[2px] bg-[#0000FF] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-2xl">
@@ -2456,7 +2460,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="p-4 bg-[#141414] border-t border-white/10 flex items-center justify-between text-xs">
+                                    <div class="p-4 bg-[#121214] border-t border-white/10 flex items-center justify-between text-xs">
                                         <span class="font-bold text-white group-hover:text-[#0000FF] transition-colors">${post.title}</span>
                                         <span class="text-[10px] font-mono font-bold text-white bg-[#0000FF] px-2.5 py-1 rounded-[2px]">#${String(pIdx + 1).padStart(2, '0')}</span>
                                     </div>
