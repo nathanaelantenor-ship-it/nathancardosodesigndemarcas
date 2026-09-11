@@ -1,4 +1,4 @@
-﻿// social_projects_data.js - Catalogo Netflix de Social Media para Nathan Cardoso
+// social_projects_data.js - Catalogo Netflix de Social Media para Nathan Cardoso
 window.socialProjectsData = [
     {
         id: "chico-design",
@@ -106,9 +106,7 @@ window.socialProjectsData = [
         previewImages: [
             "assets/images/img_1efinsEK_ymjWSzV4zI9bcuW1Q2dZNRtH.jpg",
             "assets/images/img_1YGiud5nFmluwk9hHIcKQ_iUfFQtkQUI_.jpg",
-            "assets/images/img_1fzK7LwMfvmvRLnzLnVqmASvaGxReYz7f.jpg",
-            "assets/images/img_1-2h4puHZCrqqjJnYqyZkd93ccSC9s3x8.jpg",
-            "assets/images/img_10PXGJ5cpoqQuroaHjv8tajIQb2vo907o.jpg"
+            "assets/images/img_1fzK7LwMfvmvRLnzLnVqmASvaGxReYz7f.jpg"
         ],
         carousels: [
             {
@@ -133,15 +131,7 @@ window.socialProjectsData = [
                 ]
             }
         ],
-        staticPosts: [
-            { title: "Capa Editorial", src: "assets/images/img_1efinsEK_ymjWSzV4zI9bcuW1Q2dZNRtH.jpg" },
-            { title: "Post Institucional 01", src: "assets/images/img_1-2h4puHZCrqqjJnYqyZkd93ccSC9s3x8.jpg" },
-            { title: "Post Institucional 02", src: "assets/images/img_10PXGJ5cpoqQuroaHjv8tajIQb2vo907o.jpg" },
-            { title: "Post Institucional 03", src: "assets/images/img_1eHOTBNaOF11dirkPx7z0nsTVmDAyAAWP.jpg" },
-            { title: "Post Institucional 04", src: "assets/images/img_14gQRlZM9WmOYPtXqPAfuCWycUggGb430.jpg" },
-            { title: "Post Institucional 05", src: "assets/images/img_1Y7aMn3u882CjX9LSLE-dlqOwPaY7iTaK.jpg" },
-            { title: "Post Institucional 06", src: "assets/images/img_17Kvgjvba3hsdnEMsZ-PSqLbdJ6JmtP9p.jpg" }
-        ]
+        staticPosts: []
     },
     {
         id: "electronic-arts",
