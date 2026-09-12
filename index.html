@@ -544,21 +544,23 @@
         <div id="home-view" class="block w-full">
             
             <!-- HERO SECTION -->
-            <section id="hero" class="relative min-h-screen flex items-center w-full bg-black overflow-hidden pt-24 pb-16">
-                <div class="absolute inset-y-0 right-0 w-full md:w-[58%] lg:w-[50%] xl:w-[46%] h-full z-0 pointer-events-none flex items-center justify-end" 
+            <section id="hero" class="relative min-h-screen flex flex-col md:flex-row md:items-center w-full bg-black overflow-hidden pt-28 md:pt-24 pb-0 md:pb-16 justify-between">
+                <!-- FOTO DESKTOP (Lateral Direita com Gradiente Suave) -->
+                <div class="hidden md:flex absolute inset-y-0 right-0 w-[58%] lg:w-[50%] xl:w-[46%] h-full z-0 pointer-events-none items-center justify-end" 
                      style="mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,1) 70%); 
                             -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,1) 70%);">
-                    <img src="assets/images/img_16_YYXvuXB-Xt-3oRmd345woV0gCV16Af.jpg" alt="Nathan Cardoso - Estrategista de Marcas e Designer" class="w-full h-full object-contain object-right-top md:object-right md:max-h-[92vh] opacity-90" fetchpriority="high" loading="eager" decoding="async">
+                    <img src="assets/images/img_16_YYXvuXB-Xt-3oRmd345woV0gCV16Af.jpg" alt="Nathan Cardoso - Estrategista de Marcas e Designer" class="w-full h-full object-contain object-right md:max-h-[92vh] opacity-90" fetchpriority="high" loading="eager" decoding="async">
                 </div>
 
+                <!-- CONTEÚDO PRINCIPAL (TEXTO NO ESPAÇO LIMPO) -->
                 <div class="relative z-10 w-full px-6 md:px-12 max-w-[1400px] mx-auto animate-fade-in-slow">
                     <div class="w-full md:w-[62%] lg:w-[52%] flex flex-col justify-center">
-                        <div class="mb-6">
+                        <div class="mb-5 md:mb-6">
                             <span class="text-[11px] font-bold tracking-[0.25em] text-[#0000FF] uppercase mb-1 block">Nathan Cardoso</span>
                             <p class="text-[11px] uppercase tracking-[0.18em] text-neutral-500 font-medium">Estrategista de Marcas & Design</p>
                         </div>
 
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.08] tracking-[-0.03em] text-white mb-6">
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-medium leading-[1.12] sm:leading-[1.08] tracking-[-0.03em] text-white mb-5 md:mb-6">
                             Sua marca já tem valor.<br>
                             Mas ela <span class="text-[#0000FF] font-semibold">parece ter esse valor?</span>
                         </h1>
@@ -567,19 +569,26 @@
                             Eu ajudo empresas que cresceram, mudaram ou estão prontas para o próximo passo a transformar estratégia em uma marca clara, reconhecível e coerente.
                         </p>
 
-                        <p class="text-xs uppercase tracking-[0.2em] text-neutral-500 font-medium mb-10">
+                        <p class="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-neutral-500 font-medium mb-8 md:mb-10">
                             Estratégia de marca + identidade + comunicação.
                         </p>
 
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
                             <a href="https://wa.me/message/SQ7V67WZJQPFB1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-[#0000FF] text-[#ffffff] font-bold px-7 py-4 text-xs md:text-sm tracking-[0.15em] uppercase hover:bg-neutral-800 transition-all duration-300 rounded-[2px] shadow-lg group cursor-pointer min-h-[48px]">
                                 QUERO OLHAR PARA MINHA MARCA 
                                 <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                             </a>
-                            <a href="#processo" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-[#0000FF] transition-colors py-2 border-b border-transparent hover:border-[#0000FF]">
+                            <a href="#processo" class="inline-flex items-center justify-center sm:justify-start gap-2 text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-[#0000FF] transition-colors py-2 border-b border-transparent hover:border-[#0000FF]">
                                 VER COMO EU TRABALHO <i data-lucide="arrow-down-right" class="w-3.5 h-3.5 text-[#0000FF]"></i>
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <!-- FOTO MOBILE (Abaixo de todo o texto no espaço branco, sem sobreposição) -->
+                <div class="block md:hidden w-full px-4 pt-6 pb-0 flex justify-center items-end relative z-10">
+                    <div class="relative w-full max-w-[340px] sm:max-w-[380px] mx-auto flex justify-center">
+                        <img src="assets/images/img_16_YYXvuXB-Xt-3oRmd345woV0gCV16Af.jpg" alt="Nathan Cardoso - Estrategista de Marcas e Designer" class="w-full h-auto max-h-[420px] object-contain object-bottom" fetchpriority="high" loading="eager" decoding="async">
                     </div>
                 </div>
                 
